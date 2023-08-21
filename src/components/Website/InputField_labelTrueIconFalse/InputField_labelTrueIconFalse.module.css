@@ -1,0 +1,37 @@
+.root {
+  width: 275px;
+  height: min-content;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.label {
+  color: #171740;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.input {
+  height: 56px;
+  align-self: stretch;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: #fafaff;
+}
+.placeholder {
+  color: #5d5dc5;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
