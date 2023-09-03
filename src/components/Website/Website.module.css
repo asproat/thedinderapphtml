@@ -106,7 +106,7 @@
   background-color: #068d9d;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .button4.button4 {
     width: initial;
     align-self: stretch;
@@ -176,23 +176,21 @@
 }
 
 .root {
-
+  height: min-content;
   flex-direction: column;
   align-items: center;
   background-color: #fafaff;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .root {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .root {
     width: 1440px;
-    height: min-content;
   }
 }
 
@@ -203,14 +201,14 @@
   background-color: #fff;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .callToAction {
     width: 375px;
     padding: 8px 16px;
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .callToAction {
     align-self: stretch;
     padding: 16px 120px;
@@ -245,13 +243,13 @@
   overflow: visible;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .group2 {
     align-items: center;
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .group2 {
     align-items: start;
   }
@@ -280,13 +278,13 @@
   flex-direction: column;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .thedinderappCom {
     align-items: center;
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .thedinderappCom {
     align-items: start;
   }
@@ -300,7 +298,7 @@
   gap: 32px;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
     .links {
       display: none ;
     }
@@ -314,7 +312,7 @@
   gap: 32px;
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .burgermenu {
     display: none ;
   }
@@ -369,22 +367,37 @@
   height: min-content;
   align-self: stretch;
   align-items: center;
-  gap: 80px;
-  padding: 64px 120px;
   background-color: #ffa630;
-  background-image: url('/assets/splitfade.png');
+  background-image: url('/assets/splitpart.png');
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat;
   background-blend-mode:color-burn;
-  
+  display: grid;
+  align-items: flex-start;
+}
+
+@media (min-width: 431px) {
+  .split {
+    gap: 80px;
+    padding: 64px 120px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .split {
+    gap: 20px;
+    background-size: contain;
+    padding: 40px 40px;
+    grid-template-columns: 1fr;
+  }
 }
 
 .frame2760 {
   height: min-content;
   flex: 1;
   flex-direction: column;
-  align-items: flex-start;
+  vertical-align: top;
   gap: 32px;
 }
 
@@ -410,12 +423,17 @@
 }
 
 .youVeBeenInvitedToHelpPickWher {
-  width: 491px;
   height: min-content;
   flex-direction: column;
 }
 
-.textBlock .textBlock2 .textBlock3 .textBlock4{
+@media (min-width: 431px) {
+.youVeBeenInvitedToHelpPickWher {
+  width: 491px;
+}
+}
+
+.textBlock, .textBlock2, .textBlock3, .textBlock4 {
   color: #5f0f40;
   font-size: 24px;
   line-height: 36px;
@@ -462,34 +480,17 @@
 
 .group4 {
   position: relative;
-  width: 335.1207px;
-  height: 418px;
+  height: 518px;
 }
 
 .iPhone13 {
-  position: absolute;
+  position:absolute;
+  height: ;
+  min-width: 100%;
   left: 0;
-  right: 38.4409%;
   top: 0;
   bottom: 0;
-  width: 206.2974px;
-  height: 418px;
   align-items: flex-start;
-}
-
-.screen {
-  position: absolute;
-  left: 5.4005%;
-  right: 5.3547%;
-  top: 2.2624%;
-  bottom: 2.2624%;
-  border-radius: 20px;
-  background-image:
-    /* webpackIgnore: true */
-    url('/assets/screen.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .blue {
@@ -500,69 +501,33 @@
   bottom: 0;
   background-image:
     /* webpackIgnore: true */
-    url('/assets/blue.png');
+    url('/assets/phoneimagesforweb.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.iPhone14 {
-  position: absolute;
-  left: 38.4409%;
-  right: 0%;
-  top: 0;
-  bottom: 0;
-  width: 206.2974px;
-  height: 418px;
-  align-items: flex-start;
-}
-
-.screen2 {
-  position: absolute;
-  left: 5.4005%;
-  right: 5.3547%;
-  top: 2.2624%;
-  bottom: 2.2624%;
-  border-radius: 20px;
-  background-image:
-    /* webpackIgnore: true */
-    url('/assets/screen2.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.blue2 {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0%;
-  bottom: 0;
-  background-image:
-    /* webpackIgnore: true */
-    url('/assets/blue2.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-size:contain;
 }
 
 .contentAndImage {
   display: grid;
+  padding-top: 75.25%;
+  height: 0;
   height: min-content;
   background-color: #5f0f40;
+  flex-direction: column;
+  position: relative;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .contentAndImage {
     padding: 0 0 48px;
-    flex-direction: column;
     place-content: center;
     gap: 24px;
+    width: 100%;
     grid-template-columns: 1fr;
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .contentAndImage {
     align-self: stretch;
     align-items: center;
@@ -573,7 +538,7 @@
 }
 
 
-.image {
+.image video {
   position: relative;
   align-items: flex-start;
   background-image: linear-gradient(70.3deg, #f6f5fcff 0%, #e6e5f6ff 100%);
@@ -581,20 +546,8 @@
   background-repeat: no-repeat;
   background-size: auto;
   overflow: hidden;
-}
-
-@media (max-width: 1080px) {
-  .image {
-    width: 100%;
-    align-self: stretch;
-  }
-}
-
-@media (min-width: 1081px) {
-  .image {
-    height: 360px;
-    width: 640px;
-  }
+  width: 100%;
+  transform: none;
 }
 
 .intro2 {
@@ -603,6 +556,7 @@
   flex-direction: column;
   place-content: center;
   gap: 32px;
+  padding: 15px;
 }
 
 .joinTheDinderCommunityToday {
@@ -615,6 +569,17 @@
   height: min-content;
   align-self: stretch;
   flex-direction: column;
+}
+
+@media (max-width: 430px) {
+  .joinTheDinderCommunityToday {
+    width: 100%;
+  }
+}
+
+@media (min-width: 431px) {
+  .joinTheDinderCommunityToday {
+  }
 }
 
 .loremIpsumDolorSitAmetConsecte {
@@ -635,7 +600,7 @@
   gap: 24px;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .featureRow {
     width: 375px;
     padding: 32px 0;
@@ -643,7 +608,7 @@
   }
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .featureRow {
     align-self: stretch;
     padding: 64px 120px;
@@ -665,48 +630,33 @@
   flex-direction: column;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .whyChooseDinder {
     grid-column: span 1;
   }
 }
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .whyChooseDinder {
     grid-column: span 2;
   }
 }
 
-@media (max-width: 1080px) {
-  .frame2761 {}
-}
-
-@media (min-width: 1081px) {
-  .frame2761 {
-    height: min-content;
-    align-self: stretch;
-    place-content: center;
-    align-items: flex-start;
-    gap: 48px;
-  }
-}
-
-.rectangle1 .rectangle12 .rectangle13 .rectangle14 {
+.rectangle1, .rectangle12, .rectangle13, .rectangle14  {
   align-self: stretch;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-@media (min-width: 1081px) {
-  .rectangle1 .rectangle12 .rectangle13 .rectangle14 {
+@media (min-width: 431px) {
+  .rectangle1, .rectangle12, .rectangle13, .rectangle14  {
     height: 280px;
-    width: 576px;
   }
 }
 
-@media (max-width: 1080px) {
-  .rectangle1 .rectangle12 .rectangle13 .rectangle14 {
-    width: 100%;
+@media (max-width: 430px) {
+  .rectangle1, .rectangle12, .rectangle13, .rectangle14  {
+    height: 280px;
   }
 }
 .rectangle1 {
@@ -750,13 +700,6 @@
     url('/assets/rectangle1.jpeg');
 }
 
-.frame27592 {
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .personalizedRecommendations {
   color: #000;
   font-size: 24px;
@@ -785,15 +728,16 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px 0;
+  margin: 15px;
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .feature {
     width: 576px;
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .feature {
     align-self: stretch;
     align-items: center;
@@ -804,19 +748,6 @@
   background-image:
     /* webpackIgnore: true */
     url('/assets/rectangle12.jpeg');
-}
-
-@media (max-width: 1080px) {
-  .rectangle1 .rectangle12 .rectangle13 .rectangle14 {
-    width: 375px;
-  }
-}
-
-.frame27593 {
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .easyToUseInterface {
@@ -848,13 +779,6 @@
   url('/assets/rectangle14.jpeg');
 }
 
-.frame27594 {
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .socialIntegration {
   color: #333;
   font-size: 24px;
@@ -877,13 +801,51 @@
   flex-direction: column;
 }
 
+
+@media (min-width: 431px) {
+  .badge {
+    width: 211px;
+    height: 86px;
+  }
+  
+  .applebadge {
+    width: 191px;
+    height: 63px;
+    margin: 13px;
+  }
+  
+  .downloadButtons {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 430px) {
+  .badge {
+    width: 211px;
+    height: 86px;
+  }
+  
+  .applebadge {
+    width: 191px;
+    height: 63px;
+  }
+  
+  .downloadButtons {
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+}
+
 .contactForm {
   width: min-content;
   height: min-content;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  padding: 48px 324px;
+  padding: 48px 0px;
 }
 
 .contactUs {
@@ -908,7 +870,7 @@
   background-color: #5f0f40;
 }
 
-@media (min-width: 1081px) {
+@media (min-width: 431px) {
   .frame2754 {
     width: 792px;
     align-items: flex-end;
@@ -916,7 +878,7 @@
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 430px) {
   .frame2754 {
     padding: 24px;
     align-self: stretch;
@@ -934,9 +896,20 @@
   height: min-content;
   align-self: stretch;
   align-items: flex-start;
-  gap: 32px;
-  padding: 32px 148px;
+  gap: 32px;  
   background-color: #5f0f40;
+}
+
+@media (min-width: 431px) {
+  .appDownload{
+    padding: 32px 148px;
+  }
+}
+
+@media (max-width: 430px) {
+  .appDownload{
+    padding: 32px 32px;
+  }
 }
 
 .frame2757 {
