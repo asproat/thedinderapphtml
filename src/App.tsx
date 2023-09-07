@@ -8,6 +8,9 @@ import { Website } from './components/Website/Website.js';
 interface Props {
   className?: string;
 }
+
+console.log("in app.tsx")
+
 export const App: FC<Props> = memo(function App(props = {}) {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
@@ -15,3 +18,5 @@ export const App: FC<Props> = memo(function App(props = {}) {
     </div>
   );
 });
+
+console.log("end app.tsk")

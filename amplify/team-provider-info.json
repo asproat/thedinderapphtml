@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dinderwebreact-dev-11020-authRole",
+      "UnauthRoleArn": "arn:aws:iam::864766826565:role/amplify-dinderwebreact-dev-11020-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::864766826565:role/amplify-dinderwebreact-dev-11020-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-dinderwebreact-dev-11020-deployment",
+      "UnauthRoleName": "amplify-dinderwebreact-dev-11020-unauthRole",
+      "StackName": "amplify-dinderwebreact-dev-11020",
+      "StackId": "arn:aws:cloudformation:us-east-1:864766826565:stack/amplify-dinderwebreact-dev-11020/bb0c6090-4ae9-11ee-a5a8-0ee8317ceed5",
+      "AmplifyAppId": "d19padio3m258a"
+    },
+    "categories": {
+      "auth": {
+        "dinderwebreact407f7a4e": {
+          "userPoolId": "us-east-1_UtVSQI2rm",
+          "userPoolName": "dinderAPIPool",
+          "webClientId": "147t7mp9osacdt7kh9sljrmmls",
+          "nativeClientId": "147t7mp9osacdt7kh9sljrmmls",
+          "identityPoolId": "us-east-1:dab98b4b-ca16-45e7-905d-95e7101f22df",
+          "identityPoolName": "dinder",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::864766826565:role/service-role/dinderReactWebRole",
+          "authRoleName": "service-role/dinderReactWebRole",
+          "unauthRoleArn": "arn:aws:iam::864766826565:role/service-role/dinderReactWebRoleGuest",
+          "unauthRoleName": "service-role/dinderReactWebRoleGuest"
+        }
+      }
+    }
+  }
+}

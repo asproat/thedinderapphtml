@@ -1,0 +1,108 @@
+{
+  "auth": {
+    "dinderwebreact407f7a4e": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "function": {
+    "getdinder": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_dinderwebreact407f7a4e_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    },
+    "AMPLIFY_auth_dinderwebreact407f7a4e_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "dinderwebreact407f7a4e"
+        }
+      ]
+    }
+  }
+}

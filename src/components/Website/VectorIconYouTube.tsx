@@ -10,4 +10,4 @@ const VectorIconYouTube = (props: SVGProps<SVGSVGElement>) => (
 );
 
 const Memo = memo(VectorIconYouTube);
-export { Memo as VectorIVectorIconYouTubecon4 };
+export { Memo as VectorIconYouTube };
