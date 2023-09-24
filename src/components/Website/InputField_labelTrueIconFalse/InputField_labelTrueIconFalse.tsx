@@ -19,7 +19,7 @@ export const InputField_labelTrueIconFalse: FC<Props> = memo(function InputField
     <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       {props.text?.label != null ? props.text?.label : <div className={classes.label}>Label</div>}
       <div className={classes.input}>
-        <div className={classes.placeholder}>Placeholder</div>
+        <input className={classes.placeholder} value="Placeholder"/>
       </div>
     </div>
   );

@@ -267,6 +267,7 @@ console.log("return actual website")
       </div>
       <div className={classes.contactForm}>
         <div className={classes.contactUs}>Contact us</div>
+        <form className={classes.actualForm}>
         <div className={classes.frame2754}>
           <div className={classes.frame2753}>
             <InputField_labelTrueIconFalse
@@ -301,6 +302,7 @@ console.log("return actual website")
             }}
           />
         </div>
+</form>
       </div>
       <div className={classes.appDownload}>
         <div className={classes.frame2757}>
