@@ -12,15 +12,16 @@ interface Props {
   text?: {
     label?: ReactNode;
   };
+  name?: string;
 }
 /* @figmaId 3:362 */
 export const TextArea_labelTrue: FC<Props> = memo(function TextArea_labelTrue(props = {}) {
   return (
     <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
       {props.text?.label != null ? props.text?.label : <div className={classes.label}>Label</div>}
-      <div className={classes.input}>
-        <div className={classes.pleaseEnterYourMessage}>Please enter your message</div>
-      </div>
+      <textarea className={classes.input} name={props.name != null ? props.name : "name"}
+      id={props.name != null ? props.name : "name"} placeholder={props.name != null ? props.name : "name"}
+      />
     </div>
   );
 });

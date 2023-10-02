@@ -275,25 +275,29 @@ console.log("return actual website")
               text={{
                 label: <div className={classes.label}>First name</div>,
               }}
+              name="First Name"
             />
             <InputField_labelTrueIconFalse
               className={classes.inputField2}
               text={{
                 label: <div className={classes.label2}>Last name</div>,
               }}
-            />
+              name="Last Name"
+              />
           </div>
           <InputField_labelTrueIconFalse
             className={classes.inputField3}
             text={{
               label: <div className={classes.label3}>Email address</div>,
             }}
+            name="Email Address"
           />
           <TextArea_labelTrue
             className={classes.textArea}
             text={{
               label: <div className={classes.label4}>Your message</div>,
             }}
+            name="Your Message"
           />
           <Button_levelPrimaryIconPositio
             className={classes.button4}
