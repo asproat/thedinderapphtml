@@ -364,16 +364,15 @@
 }
 
 .split {
-  height: min-content;
-  align-self: stretch;
-  align-items: center;
-  background-color: #ffa630;
   background-image: url('/assets/splitpart.png');
   background-position: center;
   background-repeat: repeat;
+  background-color: #FFA630;
   background-blend-mode:multiply;
+  height: min-content;
+  align-self: stretch;
   display: grid;
-  align-items: flex-start;
+  align-items: relative;
 }
 
 @media (min-width: 431px) {
