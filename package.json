@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-api-gateway": "^3.405.0",
+    "@coreui/react": "^5.0.0-beta.1",
     "aws-amplify": "^5.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -52,6 +52,20 @@
   flex-direction: column;
 }
 
+.question {
+  width: 80%;
+  font-weight: 700;
+  font-size: larger;
+  padding-top: 10px;
+}
+
+.answer {
+  width: 80%;
+  font-size: large;
+  background-color: #cccccccc;
+  padding: 15px;
+}
+
 .inputField2.inputField2 {
   width: initial;
   flex: 1;
@@ -177,25 +191,14 @@
   flex-direction: column;
   align-items: center;
   background-color: #fafaff;
+  width: 100%;
 }
 
-@media (max-width: 430px) {
-  .root {
-    width: 100%;
-  }
-}
-
-@media (min-width: 431px) {
-  .root {
-    width: 100%;
-  }
-}
-
-.callToAction {
+.callToAction {  
   height: min-content;
-  place-content: space-between;
-  align-items: center;
+  place-content: space-between  ;
   background-color: #fff;
+  align-items: center;
 }
 
 @media (max-width: 430px) {
@@ -356,7 +359,7 @@
   flex-direction: column;
 }
 
-.split {
+.faq {
   background-image: url('/assets/splitpart.png');
   background-position: center;
   background-repeat: repeat;
@@ -364,24 +367,22 @@
   background-blend-mode:multiply;
   height: min-content;
   align-self: stretch;
-  display: grid;
+  display: block;
   align-items: relative;
 }
 
 @media (min-width: 431px) {
-  .split {
+  .faq {
     gap: 40px;
     padding: 32px 60px;
-    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 430px) {
-  .split {
+  .faq {
     gap: 20px;
     background-size: contain;
     padding: 40px 40px;
-    grid-template-columns: 1fr;
   }
 }
 

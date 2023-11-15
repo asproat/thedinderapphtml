@@ -317,7 +317,7 @@ console.log("return actual website")
         <div className={classes.frame2751}>
           <div className={classes.company2}>Company</div>
           <div className={classes.privacyPolicy2}>Privacy policy</div>
-          <div className={classes.fAQs2}>FAQs</div>
+          <a href="faqs.html" className={classes.fAQs2}>FAQs</a>
         </div>
       </div>
       <script>
