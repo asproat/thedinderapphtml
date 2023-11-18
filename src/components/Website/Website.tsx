@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import type { FC } from 'react';
 import ReactPlayer from 'react-player'
-
 import resets from '../_resets.module.css';
 import { BrandsFacebook } from './BrandsFacebook/BrandsFacebook.js';
 import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
@@ -22,15 +21,16 @@ import { VectorIconYouTube } from './VectorIconYouTube.js';
 import { VectorIconFacebook } from './VectorIconFacebook.js';
 import { VectorIconPlumBar } from './VectorIconPlumBar';
 
-import { Amplify, API } from 'aws-amplify'
-import ReactDOM from 'react-dom';
+import { Amplify, API } from 'aws-amplify';
 
 interface Props {
   className?: string;
+  page?: string;
+  setPage(d: string): void;
 }
 
-export const Website: FC<Props> = memo(function Website(props = {}) {
-
+export const Website: FC<Props> = memo(function Website( {page, setPage} ) {
+  
 console.log("start website")
 
 Amplify.configure({
@@ -101,6 +101,7 @@ if (lastPart.match(re)) {
           console.log(err)
         }
         document.getElementById("invitation")!.style.display = "flex"
+        document.getElementById("invalid")!.style.display = "flex"
       }
       document.getElementById("invitationwait")!.style.display = "none"
     })
@@ -144,7 +145,7 @@ console.log("return actual website")
         <div className={classes.burgermenu}>
           <MenuMenu_Alt_02 />
         </div>
-        <div className={classes.group3}>
+        <div className={classes.group3}  onClick={() => setPage("home")}>
           <div className={classes.group2}>
             <GroupIcon2 className={classes.icon} />
           </div>
@@ -153,7 +154,7 @@ console.log("return actual website")
         <div className={classes.links}>
           <div className={classes.company}>Company</div>
           <div className={classes.privacyPolicy}>Privacy Policy</div>
-          <div className={classes.fAQs}>FAQs</div>
+          <div onClick={() => setPage("faqs")} className={classes.fAQs}>FAQs</div>
         </div>
 
       </div>
@@ -173,6 +174,12 @@ console.log("return actual website")
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
               <div className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
+            </div>
+          </div>
+          <div id="invalidDinder" className={classes.intro} style={{display: "none"}}>
+            <div className={classes.welcomeNameOfUser} >Invalid Dinder ID</div>
+            <div className={classes.youVeBeenInvitedToHelpPickWher}>
+              Sorry, but that ID is not valid. It may have been deleted or used already. Contact the person who sent it to you to see if you can get a new one.
             </div>
           </div>
           <div className={classes.downloadButtons}>
@@ -310,14 +317,14 @@ console.log("return actual website")
       </div>
       <div className={classes.appDownload}>
         <div className={classes.frame2757}>
-          <div className={classes.group32}>
+          <div className={classes.group32} onClick={() => setPage("home")}>
             <Group3Icon className={classes.icon} />
           </div>
         </div>
         <div className={classes.frame2751}>
           <div className={classes.company2}>Company</div>
           <div className={classes.privacyPolicy2}>Privacy policy</div>
-          <a href="faqs.html" className={classes.fAQs2}>FAQs</a>
+          <div onClick={() => setPage("faqs")} className={classes.fAQs2}>FAQs</div>
         </div>
       </div>
       <script>

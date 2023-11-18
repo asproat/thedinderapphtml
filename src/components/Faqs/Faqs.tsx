@@ -1,4 +1,3 @@
-import React from 'react';
 import { memo } from 'react';
 import type { FC } from 'react';
 
@@ -8,20 +7,17 @@ import { Group3Icon } from './Group3Icon.js';
 import { GroupIcon2 } from './GroupIcon2.js';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { CCollapse } from '@coreui/react';
-import { CButton } from '@coreui/react';
 import { CRow } from '@coreui/react';
-import { CCard } from '@coreui/react';
-import { CCardBody } from '@coreui/react';
 import { MenuMenu_Alt_02 } from './MenuMenu_Alt_02/MenuMenu_Alt_02.js';
 import classes from './Faqs.module.css';
 
-import ReactDOM from 'react-dom';
-
 interface Props {
   className?: string;
+  page?: string;
+  setPage(d: string): void;
 }
 
-export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent(props = {}) {
+export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent({page, setPage}) {
 
 console.log("start faqs")
 
@@ -56,7 +52,8 @@ function toggleIsShown(index: number){
         return clone;
     });
 }
-    
+
+
 console.log("return actual website")
 
 /* @figmaId 154:24 */
@@ -66,7 +63,7 @@ console.log("return actual website")
         <div className={classes.burgermenu}>
           <MenuMenu_Alt_02 />
         </div>
-        <div className={classes.group3}>
+        <div className={classes.group3}  onClick={() => setPage("home")}>
           <div className={classes.group2}>
             <GroupIcon2 className={classes.icon} />
           </div>
@@ -75,12 +72,13 @@ console.log("return actual website")
         <div className={classes.links}>
           <div className={classes.company}>Company</div>
           <div className={classes.privacyPolicy}>Privacy Policy</div>
-          <div className={classes.fAQs}>FAQs</div>
+          <div onClick={() => setPage("faqs")} className={classes.fAQs}>FAQs</div>
         </div>
 
       </div>
       <div className={classes.faq}>
     <CRow>
+    <div className={classes.welcomeNameOfUser}>FAQs</div>
     <div  
       className={classes.question} 
       onClick={() => toggleIsShown(0)} >What's a Dinder?</div>
@@ -213,16 +211,16 @@ console.log("return actual website")
         </CCollapse>
     </CRow>
   </div>
-      <div className={classes.appDownload}>
+  <div className={classes.appDownload}>
         <div className={classes.frame2757}>
-          <div className={classes.group32}>
+          <div className={classes.group32} onClick={() => setPage("home")}>
             <Group3Icon className={classes.icon} />
           </div>
         </div>
         <div className={classes.frame2751}>
           <div className={classes.company2}>Company</div>
           <div className={classes.privacyPolicy2}>Privacy policy</div>
-          <a href="faqs.html" className={classes.fAQs2}>FAQs</a>
+          <div onClick={() => setPage("faqs")} className={classes.fAQs2}>FAQs</div>
         </div>
       </div>
       <script>
