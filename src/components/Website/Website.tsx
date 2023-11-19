@@ -152,9 +152,9 @@ console.log("return actual website")
           <div className={classes.thedinderappCom}>thedinderapp.com</div>
         </div>
         <div className={classes.links}>
-          <div className={classes.company}>Company</div>
-          <div className={classes.privacyPolicy}>Privacy Policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.fAQs}>FAQs</div>
+          <div className={classes.topLink}>Company</div>
+          <div className={classes.topLink}>Privacy Policy</div>
+          <div onClick={() => setPage("faqs")} className={classes.topLink}>FAQs</div>
         </div>
 
       </div>
@@ -322,9 +322,9 @@ console.log("return actual website")
           </div>
         </div>
         <div className={classes.frame2751}>
-          <div className={classes.company2}>Company</div>
-          <div className={classes.privacyPolicy2}>Privacy policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.fAQs2}>FAQs</div>
+          <div className={classes.bottomLink}>Company</div>
+          <div className={classes.bottomLink}>Privacy policy</div>
+          <div onClick={() => setPage("faqs")} className={classes.bottomLink}>FAQs</div>
         </div>
       </div>
       <script>

@@ -216,6 +216,7 @@
   position: relative;
   width: 132px;
   height: 56px;
+  cursor: pointer;
 }
 
 .group {
@@ -314,7 +315,7 @@
   }
 }
 
-.company {
+.topLink {
   color: #5f0f40;
   font-size: 18px;
   line-height: 24px;
@@ -326,34 +327,7 @@
   align-items: end;
   white-space: nowrap;
   flex-direction: column;
-}
-
-.privacyPolicy {
-  color: #5f0f40;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  text-align: end;
-  align-items: end;
-  white-space: nowrap;
-  flex-direction: column;
-}
-
-.fAQs {
-  color: #5f0f40;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  text-align: end;
-  align-items: end;
-  white-space: nowrap;
-  flex-direction: column;
+  cursor: pointer;
 }
 
 .split {
@@ -920,6 +894,7 @@
   width: 129.3333px;
   height: 32px;
   overflow: visible;
+  cursor: pointer;
 }
 
 .frame2751 {
@@ -930,7 +905,7 @@
   gap: 8px;
 }
 
-.company2 {
+.bottomLink {
   color: #fff;
   font-size: 18px;
   line-height: 24px;
@@ -940,28 +915,6 @@
   height: min-content;
   white-space: nowrap;
   flex-direction: column;
+  cursor: pointer;
 }
 
-.privacyPolicy2 {
-  color: #fafaff;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  white-space: nowrap;
-  flex-direction: column;
-}
-
-.fAQs2 {
-  color: #fafaff;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  white-space: nowrap;
-  flex-direction: column;
-}
