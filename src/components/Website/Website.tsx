@@ -82,25 +82,33 @@ if (lastPart.match(re)) {
       console.log(response)
       if (response.data != null) {
         console.log(response.data)
-        var dindername = response.data.dindername
-        var dindertimestamp = response.data.dinderdate * 1000
-        var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
-        var dindertime = new Date(dindertimestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
-        console.log(dinderinvitecode)
-        try {
-          console.log(response.data.privateIds)
-          var user = response.data.privateIds[dinderinvitecode]
-          console.log(user)
+        if (response.data == "expired") {
+          console.log("expired")
+          document.getElementById("expired")!.style.display = "flex"
+        }
+        else {
+          var dindername = response.data.dindername
+          var dindertimestamp = response.data.dinderdate * 1000
+          var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+          var dindertime = new Date(dindertimestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+          console.log(dinderinvitecode)
+          try {
+            console.log(response.data.privateIds)
+            var user = response.data.privateIds[dinderinvitecode]
+            console.log(user)
 
-          document.getElementById("welcome")!.innerText = `Welcome ${user.sentName},`
-          document.getElementById("invitationdetails")!.innerText = 
-            `You've been invited to help pick where to eat for ${dindername} on ${dinderdate} at ${dindertime}.`
+            document.getElementById("welcome")!.innerText = `Welcome ${user.sentName},`
+            document.getElementById("invitationdetails")!.innerText = 
+              `You've been invited to help pick where to eat for ${dindername} on ${dinderdate} at ${dindertime}.`
+            document.getElementById("invitation")!.style.display = "flex"
+            }
+          catch(err) {
+            console.log("data error")
+            console.log(err)
+            document.getElementById("invalid")!.style.display = "flex"
+          }
         }
-        catch(err) {
-          console.log("data error")
-          console.log(err)
-        }
-        document.getElementById("invitation")!.style.display = "flex"
+      } else {
         document.getElementById("invalid")!.style.display = "flex"
       }
       document.getElementById("invitationwait")!.style.display = "none"
@@ -113,7 +121,10 @@ if (lastPart.match(re)) {
       } else {
         console.log(error.request)
       }
-    });
+      document.getElementById("invalid")!.style.display = "flex"
+      document.getElementById("invitationwait")!.style.display = "none"
+    }
+  );
 }
 
 
@@ -176,10 +187,16 @@ console.log("return actual website")
               <div className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
-          <div id="invalidDinder" className={classes.intro} style={{display: "none"}}>
+          <div id="invalid" className={classes.intro} style={{display: "none"}}>
             <div className={classes.welcomeNameOfUser} >Invalid Dinder ID</div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
               Sorry, but that ID is not valid. It may have been deleted or used already. Contact the person who sent it to you to see if you can get a new one.
+            </div>
+          </div>
+          <div id="expired" className={classes.intro} style={{display: "none"}}>
+            <div className={classes.welcomeNameOfUser} >Dinder has ended</div>
+            <div className={classes.youVeBeenInvitedToHelpPickWher}>
+              Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results. 
             </div>
           </div>
           <div className={classes.downloadButtons}>

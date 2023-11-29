@@ -20,31 +20,66 @@ class siteStep {
 
   constructor(newName: string){
     this.page = newName;
-    this.sequence = currentSequence++;
+    this.sequence = ++currentSequence;
+    //history.pushState(this, newName, newName)
     console.log("sequence is now");
     console.log(this.sequence);
   }
 }
 
-var startLength = history.length;
 var currentSequence = 0;
 
 export const App : FC<Props> = memo(function App() {
 
-  useEffect(() => {    
-    onpopstate = (event) => {
-      console.log((event.state as siteStep).page);
-      console.log((event.state as siteStep).sequence);
-      if((event.state as siteStep).sequence < currentSequence) {
-        currentSequence--;
-        history.back()
+  useEffect(() => {
+    function handlePopStateEvent(e: any) {
+      e.preventDefault();      
+
+      console.log("useEffect");
+      console.log(e);
+      console.log("pop state");
+      console.log(e.state);
+      console.log("currentsequence");
+      console.log(currentSequence);
+
+      /*
+      if(e.state != null) {
+        console.log((e.state as siteStep).page);
+        console.log((e.state as siteStep).sequence);
+        console.log(currentSequence);
+        // back
+        if((e.state as siteStep).sequence == currentSequence) {
+          console.log("back");
+          currentSequence--;
+          console.log("currentSequence now: " + currentSequence);
+          history.back();
+          console.log("after history back");
+          setPage((e.state as siteStep).page);
+          console.log("after set page");
+        } else if ((e.state as siteStep).sequence > currentSequence) {
+          console.log("forward")
+          currentSequence++;
+          setPage((e.state as siteStep).page);
+          history.forward();
+        }
       } else {
-        setPage((event.state as siteStep).page);
+        setPage("home");
       }
-      event.preventDefault();      
-    };
-    console.log("useEffect end");
-  });
+      console.log("useEffect end");
+  
+      console.log(e);
+      */
+      console.log("Check if the function Working")
+
+    }
+
+    console.log("Check if Effect Working")
+
+    window.addEventListener("popstate", handlePopStateEvent);
+
+    return () => window.removeEventListener("popstate", handlePopStateEvent);
+
+  }, []);
 
   const [page, setPage] = useState("home")
 

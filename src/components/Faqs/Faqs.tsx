@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import type { FC } from 'react';
 
 import resets from '../_resets.module.css';
@@ -52,7 +52,6 @@ function toggleIsShown(index: number){
         return clone;
     });
 }
-
 
 console.log("return actual website")
 
