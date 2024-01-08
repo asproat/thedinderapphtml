@@ -1,0 +1,11 @@
+{
+    "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [ "RLPUFN2LZW.com.sproatcentral.dinderiosdemo" ],
+        "paths": ["*"]
+      }
+    ]
+  }
+}

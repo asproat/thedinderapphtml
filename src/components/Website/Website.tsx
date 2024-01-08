@@ -97,7 +97,7 @@ if (lastPart.match(re)) {
             var user = response.data.privateIds[dinderinvitecode]
             console.log(user)
 
-            document.getElementById("welcome")!.innerText = `Welcome ${user.sentName},`
+            document.getElementById("welcome")!.innerText = `Welcome ${decodeURIComponent(user.sentName)},`
             document.getElementById("invitationdetails")!.innerText = 
               `You've been invited to help pick where to eat for ${dindername} on ${dinderdate} at ${dindertime}.`
             document.getElementById("invitation")!.style.display = "flex"

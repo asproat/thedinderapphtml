@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.sproatcentral.dinderandroiddemo",
+    "sha256_cert_fingerprints":
+    ["FD:A8:F2:39:81:B1:8A:46:3C:9F:CA:8F:6F:7D:4B:09:81:96:BE:6D:D8:99:C8:EC:3C:F8:47:E5:94:6C:93:68"]
+  }
+}] 
+

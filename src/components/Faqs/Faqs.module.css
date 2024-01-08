@@ -648,7 +648,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte2 {
+.loremIpsumDolorSitAmetConsecte2, .loremIpsumDolorSitAmetConsecte3, .loremIpsumDolorSitAmetConsecte4, .loremIpsumDolorSitAmetConsecte5 {
   color: #333;
   font-size: 18px;
   line-height: 24px;
@@ -674,15 +674,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte3 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
+
 
 
 .feature {
@@ -722,15 +714,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte4 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
+
 
 
 .rectangle14 {
@@ -749,15 +733,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte5 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
+
 
 
 @media (min-width: 431px) {

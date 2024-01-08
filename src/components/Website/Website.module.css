@@ -57,7 +57,7 @@
   flex: 1;
 }
 
-.label2 {
+.label2, label3 {
   color: #fff;
   font-size: 18px;
   line-height: 24px;
@@ -71,17 +71,6 @@
 .inputField3.inputField3 {
   width: initial;
   align-self: stretch;
-}
-
-.label3 {
-  color: #fff;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  white-space: nowrap;
-  flex-direction: column;
 }
 
 .textArea.textArea {
@@ -401,7 +390,7 @@
 }
 }
 
-.textBlock, .textBlock2, .textBlock3, .textBlock4 {
+.textBlock3, .textBlock4 {
   color: #5f0f40;
   font-size: 24px;
   line-height: 36px;
@@ -409,17 +398,12 @@
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
 }
 
-.textBlock2 {
-  margin-top: 0;
-}
-
-.textBlock3 .textBlock4 {
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-}
-
 .textBlock4 {
   margin-top: 0;
+}
+
+.textBlock3, .textBlock4 {
+  line-height: 32px;
 }
 
 .frame2758 {
@@ -637,17 +621,7 @@
   gap: 16px;
 }
 
-.comprehensiveRestaurantDatabas {
-  color: #333;
-  font-size: 24px;
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
-
-.loremIpsumDolorSitAmetConsecte2 {
+.loremIpsumDolorSitAmetConsecte2, .loremIpsumDolorSitAmetConsecte3, .loremIpsumDolorSitAmetConsecte4, .loremIpsumDolorSitAmetConsecte5 {
   color: #333;
   font-size: 18px;
   line-height: 24px;
@@ -673,15 +647,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte3 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
+
 
 
 .feature {
@@ -711,34 +677,13 @@
     url('/assets/rectangle12.jpeg');
 }
 
-.easyToUseInterface {
-  color: #333;
-  font-size: 24px;
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
-
-.loremIpsumDolorSitAmetConsecte4 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
-
-
 .rectangle14 {
   background-image:
   /* webpackIgnore: true */
   url('/assets/rectangle14.jpeg');
 }
 
-.socialIntegration {
+.socialIntegration, .comprehensiveRestaurantDatabas, .easyToUseInterface {
   color: #333;
   font-size: 24px;
   line-height: 32px;
@@ -748,15 +693,7 @@
   flex-direction: column;
 }
 
-.loremIpsumDolorSitAmetConsecte5 {
-  color: #333;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
+
 
 
 @media (min-width: 431px) {
