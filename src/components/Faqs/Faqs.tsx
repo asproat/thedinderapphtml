@@ -139,7 +139,7 @@ console.log("return actual website")
         <CCollapse visible={question[5]}>
             <div className={classes.answer} 
               onClick={() => toggleIsShown(5)} >
-              The only thing we know about anyone using the app is an identifier that lets us show you the Dinders you’re a part of that haven’t expired yet. Yes, the app asks to know where you are when you create a new Dinder because you probably want to pick places near your current location. But you can deny that permission and use the app without any restrictions. And when we create the Dinder based on the location you pick, we through that location away forever. What’s more, 1 week after the Dinder date, we delete everything about it except for adding a marker for everyone who participated so they know how many they’ve been part of and completely anonymous counts of the stats of the Dinder for the month it occurred. After it’s deleted, we don’t even know who was in which Dinder, just how many they were part of. As for the monthly stats, it’s strictly counts, averages, minimums, and maximums. 
+              The only thing we know about anyone using the app is an identifier that lets us show you the Dinders you’re a part of that haven’t expired yet. Yes, the app asks to know where you are when you create a new Dinder because you probably want to pick places near your current location. But you can deny that permission and use the app without any restrictions. And when we create the Dinder based on the location you pick, we throw that location away forever. What’s more, 1 week after the Dinder date, we delete everything about it except for adding a marker for everyone who participated so they know how many they’ve been part of and completely anonymous counts of the stats of the Dinder for the month it occurred. After it’s deleted, we don’t even know who was in which Dinder, just how many they were part of. As for the monthly stats, it’s strictly counts, averages, minimums, and maximums. 
           </div>
         </CCollapse>
     </CRow>
@@ -194,7 +194,7 @@ console.log("return actual website")
         <CCollapse visible={question[10]}>
             <div className={classes.answer} 
               onClick={() => toggleIsShown(10)} >
-              We don’t. You can put in whatever name you want or choose to stay anonymous (which will make your name “Person 1”, “Person 2”, etc.). And when the Dinder is over, we even through that name away. Keep in mind, the Dinder host can remove you if they don’t like the name you picked. 
+              We don’t. You can put in whatever name you want or choose to stay anonymous (which will make your name “Person 1”, “Person 2”, etc.). And when the Dinder is over, we even throw that name away. Keep in mind, the Dinder host can remove you if they don’t like the name you picked. 
           </div>
         </CCollapse>
     </CRow>

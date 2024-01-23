@@ -348,12 +348,16 @@
   }
 }
 
-.frame2760 {
+.frame2760, .frame2763 {
   height: min-content;
   flex: 1;
   flex-direction: column;
   vertical-align: top;
   gap: 32px;
+}
+
+.frame2763 {
+  gap: 16px;
 }
 
 .intro {
@@ -366,17 +370,30 @@
   gap: 16px;
 }
 
-.welcomeNameOfUser {
+.welcomeNameOfUser, .headline2, .headline3 {
   color: #5f0f40;
-  font-size: 48px;
-  line-height: 48px;
   font-weight: 900;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
+    'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
   height: min-content;
   align-self: stretch;
   flex-direction: column;
-  
+}
+
+.headline2 {
+  line-height: 36px;
+  font-size: 36px;
+}
+
+.headline3 {
+  line-height: 26px;
+  font-size: 26px;
+}
+
+
+.welcomeNameOfUser {
+  font-size: 48px;
+  line-height: 48px;
 }
 
 .youVeBeenInvitedToHelpPickWher {

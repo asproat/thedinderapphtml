@@ -29,134 +29,134 @@ interface Props {
   setPage(d: string): void;
 }
 
-export const Website: FC<Props> = memo(function Website( {page, setPage} ) {
-  
-console.log("start website")
+export const Website: FC<Props> = memo(function Website({ page, setPage }) {
 
-Amplify.configure({
-  API: {
-    endpoints: [
-      {
-        name: 'dinder',
-        endpoint: 'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage',
-        custom_header: async () => {
-          return { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' };
-          // Alternatively, with Cognito User Pools use this:
-          // return { Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}` }
-          // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
-        }
-      }
-    ]
-  }
-});
+  console.log("start website")
 
-var requestURL = window.location.href
-var dinderCode = ""
-var dinderinvitecode = ""
-var re = /^\d{12}$/;
-var urlparts = requestURL.split("/")
-var lastPart = urlparts[urlparts.length - 1]
-var invitewaitshow = "none"
-
-console.log("check lastpart")
-console.log(lastPart)
-if (lastPart.match(re)) {
-  invitewaitshow = "block"
-  console.log("match code")
-  dinderCode = lastPart
-  dinderinvitecode = dinderCode.substring(8)
-
-  const apiName = 'dinder';
-  const path = '/' + dinderCode;
-  const myInit = {
-    headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
-    response: true // OPTIONAL (return the entire Axios response object instead of only response.data)
-  };
-
-  console.log(dinderCode);
-  console.log(dinderinvitecode);
-
-  API.get(apiName, path, myInit)
-    .then((response) => {
-      console.log("response")
-      console.log(response)
-      if (response.data != null) {
-        console.log(response.data)
-        if (response.data == "expired") {
-          console.log("expired")
-          document.getElementById("expired")!.style.display = "flex"
-        }
-        else {
-          var dindername = response.data.dindername
-          var dindertimestamp = response.data.dinderdate * 1000
-          var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
-          var dindertime = new Date(dindertimestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
-          console.log(dinderinvitecode)
-          try {
-            console.log(response.data.privateIds)
-            var user = response.data.privateIds[dinderinvitecode]
-            console.log(user)
-
-            document.getElementById("welcome")!.innerText = `Welcome ${decodeURIComponent(user.sentName)},`
-            document.getElementById("invitationdetails")!.innerText = 
-              `You've been invited to help pick where to eat for ${dindername} on ${dinderdate} at ${dindertime}.`
-            document.getElementById("invitation")!.style.display = "flex"
-            }
-          catch(err) {
-            console.log("data error")
-            console.log(err)
-            document.getElementById("invalid")!.style.display = "flex"
+  Amplify.configure({
+    API: {
+      endpoints: [
+        {
+          name: 'dinder',
+          endpoint: 'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage',
+          custom_header: async () => {
+            return { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' };
+            // Alternatively, with Cognito User Pools use this:
+            // return { Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}` }
+            // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
           }
         }
-      } else {
-        document.getElementById("invalid")!.style.display = "flex"
-      }
-      document.getElementById("invitationwait")!.style.display = "none"
-    })
-    .catch((error) => {
-      console.log("get error")
-      console.log(error)
-      if (error.response) {
-        console.log(error.response);
-      } else {
-        console.log(error.request)
-      }
-      document.getElementById("invalid")!.style.display = "flex"
-      document.getElementById("invitationwait")!.style.display = "none"
+      ]
     }
-  );
-}
+  });
+
+  var requestURL = window.location.href
+  var dinderCode = ""
+  var dinderinvitecode = ""
+  var re = /^\d{12}$/;
+  var urlparts = requestURL.split("/")
+  var lastPart = urlparts[urlparts.length - 1]
+  var invitewaitshow = "none"
+
+  console.log("check lastpart")
+  console.log(lastPart)
+  if (lastPart.match(re)) {
+    invitewaitshow = "block"
+    console.log("match code")
+    dinderCode = lastPart
+    dinderinvitecode = dinderCode.substring(8)
+
+    const apiName = 'dinder';
+    const path = '/' + dinderCode;
+    const myInit = {
+      headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+      response: true // OPTIONAL (return the entire Axios response object instead of only response.data)
+    };
+
+    console.log(dinderCode);
+    console.log(dinderinvitecode);
+
+    API.get(apiName, path, myInit)
+      .then((response) => {
+        console.log("response")
+        console.log(response)
+        if (response.data != null) {
+          console.log(response.data)
+          if (response.data == "expired") {
+            console.log("expired")
+            document.getElementById("expired")!.style.display = "flex"
+          }
+          else {
+            var dindername = response.data.dindername
+            var dindertimestamp = response.data.dinderdate * 1000
+            var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+            var dindertime = new Date(dindertimestamp).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+            console.log(dinderinvitecode)
+            try {
+              console.log(response.data.privateIds)
+              var user = response.data.privateIds[dinderinvitecode]
+              console.log(user)
+
+              document.getElementById("welcome")!.innerText = `Welcome ${decodeURIComponent(user.sentName)},`
+              document.getElementById("invitationdetails")!.innerText =
+                `You've been invited to help pick where to eat for ${dindername} on ${dinderdate} at ${dindertime}.`
+              document.getElementById("invitation")!.style.display = "flex"
+            }
+            catch (err) {
+              console.log("data error")
+              console.log(err)
+              document.getElementById("invalid")!.style.display = "flex"
+            }
+          }
+        } else {
+          document.getElementById("invalid")!.style.display = "flex"
+        }
+        document.getElementById("invitationwait")!.style.display = "none"
+      })
+      .catch((error) => {
+        console.log("get error")
+        console.log(error)
+        if (error.response) {
+          console.log(error.response);
+        } else {
+          console.log(error.request)
+        }
+        document.getElementById("invalid")!.style.display = "flex"
+        document.getElementById("invitationwait")!.style.display = "none"
+      }
+      );
+  }
 
 
-var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-var videourl = 'https://youtu.be/l5_vsnhvX20'
+  var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  var videourl = 'https://youtu.be/l5_vsnhvX20'
 
-if (darkmode === 'dark') {
-  videourl = 'https://youtu.be/WXizbPusJ2c'
-}
+  if (darkmode === 'dark') {
+    videourl = 'https://youtu.be/WXizbPusJ2c'
+  }
 
-const mql = window.matchMedia('(max-width: 600px)');
+  const mql = window.matchMedia('(max-width: 600px)');
 
-let mobileView = mql.matches;
-var videoWidth = "500px"
-var videoHeight = "297px"
+  let mobileView = mql.matches;
+  var videoWidth = "500px"
+  var videoHeight = "297px"
 
-var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-if (mobileView) {
-  videoWidth = screenWidth + "px"
-  videoHeight = 9 / 16 * screenWidth + "px"
-}
+  var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  if (mobileView) {
+    videoWidth = screenWidth + "px"
+    videoHeight = 9 / 16 * screenWidth + "px"
+  }
 
-console.log("return actual website")
+  console.log("return actual website")
 
-/* @figmaId 154:24 */
+  /* @figmaId 154:24 */
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <div className={classes.callToAction}>
         <div className={classes.burgermenu}>
           <MenuMenu_Alt_02 />
         </div>
-        <div className={classes.group3}  onClick={() => setPage("home")}>
+        <div className={classes.group3} onClick={() => setPage("home")}>
           <div className={classes.group2}>
             <GroupIcon2 className={classes.icon} />
           </div>
@@ -170,34 +170,47 @@ console.log("return actual website")
 
       </div>
       <div className={classes.split}>
-        <div className={classes.frame2760}>        
-        <div className={classes.welcomeNameOfUser}>The Dinder App:
-        <div className={classes.welcomeNameOfUser} style={{lineHeight: "36px", fontSize: "36px"}}>The answer to where are we going out to eat.</div>
-        </div>
-        <div id="invitationwait"  style={{display:invitewaitshow}}>
-          <div className={classes.textBlock3}>Loading invitation...</div>
-        <progress id="progress" style={{all:"revert"}} max="100" />
-        </div>          
-          <div id="invitation" className={classes.intro} style={{display: "none"}}>
+        <div className={classes.frame2760}>
+          <div className={classes.welcomeNameOfUser}>The Dinder App: </div>
+          <div className={classes.headline2}>Finally, the answer to "Where are we going out to eat?"</div>
+          <div id="invitationwait" style={{ display: invitewaitshow }}>
+            <div className={classes.textBlock3}>Loading invitation...</div>
+            <progress id="progress" style={{ all: "revert" }} max="100" />
+          </div>
+          <div id="invitation" className={classes.intro} style={{ display: "none" }}>
             <div className={classes.welcomeNameOfUser} id="welcome"></div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
-              <div className={classes.textBlock3} id="invitationdetails">                
+              <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
               <div className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
-          <div id="invalid" className={classes.intro} style={{display: "none"}}>
+          <div id="invalid" className={classes.intro} style={{ display: "none" }}>
             <div className={classes.welcomeNameOfUser} >Invalid Dinder ID</div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
               Sorry, but that ID is not valid. It may have been deleted or used already. Contact the person who sent it to you to see if you can get a new one.
             </div>
           </div>
-          <div id="expired" className={classes.intro} style={{display: "none"}}>
+          <div id="expired" className={classes.intro} style={{ display: "none" }}>
             <div className={classes.welcomeNameOfUser} >Dinder has ended</div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
-              Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results. 
+              Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results.
             </div>
+          </div>
+          <div className={classes.frame2763}>
+            <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
+            <div className={classes.headline3}>Has this conversation ever happened:</div>
+            <div className={classes.headline3}>“What about restaurant A?”</div>
+            <div className={classes.headline3}>“I can’t eat there. Everything is fried. What about restaurant B?”</div>
+            <div className={classes.headline3}>“No, went there last week.”</div>
+            <div className={classes.headline3}>And the “Where do we eat?” carousel continues.</div>
+            <div className={classes.headline3}>Finding the right restaurant that fits everyone’s needs may seem like finding the Holy Grail.</div>
+            <div className={classes.headline3}>At Dinder, we’ve democratized dining out.</div>
+            <div className={classes.headline3}>We know how difficult and exhausting it can be to get everyone to agree on where to eat. Sure, you can roll the dice and pick a random place. But what if no one likes it? What if there are no gluten-free options for Carol? What if Rick lives too far away? Isn’t Daryl allergic to shellfish?</div>
+            <div className={classes.headline3}>If only there was an app that could help you make the best choice on where to eat that makes everyone happy.</div>
+            <div className={classes.headline3}>Welcome to The Dinder App.</div>
+            <div className={classes.headline3}>Spend less time agonizing and more time socializing.</div>
           </div>
           <div className={classes.downloadButtons}>
             <div>
@@ -224,12 +237,9 @@ console.log("return actual website")
         <div className={classes.intro2}>
           <div className={classes.joinTheDinderCommunityToday}>What is a Dinder?</div>
           <div className={classes.loremIpsumDolorSitAmetConsecte}>
-            ***This is where I want to describe what a Dinder is. Bascially, it's an event where more
-            than one person is going out to eat in an area at a specific date and time. The Dinder App
-            allows that information to be shared along with a list of nearby restaurants. Each person,
-            the host and everyone invited, gets to vote plus/like (+) or minus/dislike (-) on each
-            restaurant in the list. When the voting ends, the host uses the votes to select which
-            restaurant they'll use. This will be a longer video that plays like a commercial for the app.***
+            <p>Dinder is your personal restaurant ranking system that is decided by the people you know. You choose a specific area of town, the time and the date of your event. Dinder takes this information and provides a list of nearby restaurants. Simply share this list with everyone in your dining party so they can help rate the choices. Everyone gets to vote up or down on every restaurant on the list and Dinder ranks your choices from best to worst. </p>
+            <p>Whether you are the host or a guest, everyone can play.</p>
+            <p>Bon Appetit!</p>
           </div>
         </div>
       </div>
@@ -238,53 +248,42 @@ console.log("return actual website")
         <div className={classes.feature}>
           <div className={classes.rectangle1}></div>
           <div className={classes.frame2759}>
-            <div className={classes.comprehensiveRestaurantDatabas}>***Fast and Easy To Use***</div>
+            <div className={classes.comprehensiveRestaurantDatabas}>It’s fast. It’s easy. And Dinder takes the guesswork out of where to break bread.</div>
             <div className={classes.loremIpsumDolorSitAmetConsecte2}>
-              ***I was thinking that this would give a quick how to list. "Pick a date and time, Pick a
-              central location (using the map or searching for a locattion), change the name if you want,
-              Push the button to create the Dinder. Share it with anyone you like. They get a link to
-              download the app if they don't have it installed, or directly to the Dinder if they do.***
+              Here’s How:
+              <ol>
+                <li>Pick a Date and Time</li>
+                <li>Pick a Centralized Location Using the Map </li>
+                <li>Push the Button and Create Your Dinder. </li>
+              </ol>
+              That’s it. The Dinder App will generate a link for you to share with everyone in your dinner party! Once they get they get the link, they can vote up or down on the choice. Crowdsource with the people you know to find the perfect place to dine.
+
+
             </div>
           </div>
         </div>
         <div className={classes.feature}>
           <div className={classes.rectangle14}></div>
           <div className={classes.frame2759}>
-            <div className={classes.socialIntegration}>***use information to vote ***</div>
+            <div className={classes.socialIntegration}>The Dinder App provides all the information you’ll need to make your dining selections, including listings and locations, restaurant ratings and price rankings. </div>
             <div className={classes.loremIpsumDolorSitAmetConsecte5}>
-              *** the following is available for each choice/restaurant
-              - Name
-              - address
-              - rating (1-5 stars)
-              - cost (1-4?5? $)
-              - link to google maps entry
-              ***
+
             </div>
           </div>
         </div>
         <div className={classes.feature}>
           <div className={classes.rectangle12}></div>
           <div className={classes.frame2759}>
-            <div className={classes.personalizedRecommendations}>***Customize the choices***</div>
+            <div className={classes.personalizedRecommendations}> Customize your choice list by including type distance to your desired location, including or excluding fast food, limiting the number of choices and more!</div>
             <div className={classes.loremIpsumDolorSitAmetConsecte3}>
-              *** you can:
-              - include, exclude, or use only fast food locations (default is exclude)
-              - choose the distance from the chosen location to search
-              (from ~1 mile/1.5 km to 30 miles/50km, default is 30 miles)
-              - choose the maximum number or choices (from 10 to 30, default is 20,
-              more than 20 is extra $0.99 charge for host)***
             </div>
           </div>
         </div>
         <div className={classes.feature}>
           <div className={classes.rectangle13}></div>
           <div className={classes.frame2759}>
-            <div className={classes.easyToUseInterface}>***add features***</div>
+            <div className={classes.easyToUseInterface}>For a small added fee you can get extra benefits, such as deal-breakers/double pluses, comments, and invites to friends of friends.</div>
             <div className={classes.loremIpsumDolorSitAmetConsecte4}>
-              *** here are some extras you can add (each adds a $0.99 charge for the host)
-              - add names to votes (option to allow comments)
-              - add double plus (like X 2) and deal breakers (dislike x 2)
-              - allow invited members to invite others ***
             </div>
           </div>
         </div>
@@ -292,45 +291,45 @@ console.log("return actual website")
       <div className={classes.contactForm}>
         <div className={classes.contactUs}>Contact us</div>
         <form className={classes.actualForm}>
-        <div className={classes.frame2754}>
-          <div className={classes.frame2753}>
-            <InputField_labelTrueIconFalse
-              className={classes.inputField}
-              text={{
-                label: <div className={classes.label}>First name</div>,
-              }}
-              name="First Name"
-            />
-            <InputField_labelTrueIconFalse
-              className={classes.inputField2}
-              text={{
-                label: <div className={classes.label2}>Last name</div>,
-              }}
-              name="Last Name"
+          <div className={classes.frame2754}>
+            <div className={classes.frame2753}>
+              <InputField_labelTrueIconFalse
+                className={classes.inputField}
+                text={{
+                  label: <div className={classes.label}>First name</div>,
+                }}
+                name="First Name"
               />
+              <InputField_labelTrueIconFalse
+                className={classes.inputField2}
+                text={{
+                  label: <div className={classes.label2}>Last name</div>,
+                }}
+                name="Last Name"
+              />
+            </div>
+            <InputField_labelTrueIconFalse
+              className={classes.inputField3}
+              text={{
+                label: <div className={classes.label3}>Email address</div>,
+              }}
+              name="Email Address"
+            />
+            <TextArea_labelTrue
+              className={classes.textArea}
+              text={{
+                label: <div className={classes.label4}>Your message</div>,
+              }}
+              name="Your Message"
+            />
+            <Button_levelPrimaryIconPositio
+              className={classes.button4}
+              text={{
+                button: <div className={classes.button3}>Submit message</div>,
+              }}
+            />
           </div>
-          <InputField_labelTrueIconFalse
-            className={classes.inputField3}
-            text={{
-              label: <div className={classes.label3}>Email address</div>,
-            }}
-            name="Email Address"
-          />
-          <TextArea_labelTrue
-            className={classes.textArea}
-            text={{
-              label: <div className={classes.label4}>Your message</div>,
-            }}
-            name="Your Message"
-          />
-          <Button_levelPrimaryIconPositio
-            className={classes.button4}
-            text={{
-              button: <div className={classes.button3}>Submit message</div>,
-            }}
-          />
-        </div>
-</form>
+        </form>
       </div>
       <div className={classes.appDownload}>
         <div className={classes.frame2757}>
@@ -345,9 +344,9 @@ console.log("return actual website")
         </div>
       </div>
       <script>
-    </script>
+      </script>
     </div>
-  );  
+  );
 });
 
 

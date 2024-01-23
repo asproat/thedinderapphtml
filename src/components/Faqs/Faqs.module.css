@@ -1,4 +1,6 @@
-* {-webkit-font-smoothing: antialiased;}
+* {
+  -webkit-font-smoothing: antialiased;
+}
 
 .button2.button2 {
   width: initial;
@@ -71,7 +73,8 @@
   flex: 1;
 }
 
-.label2 {
+.label2,
+.label3 {
   color: #fff;
   font-size: 18px;
   line-height: 24px;
@@ -85,17 +88,6 @@
 .inputField3.inputField3 {
   width: initial;
   align-self: stretch;
-}
-
-.label3 {
-  color: #fff;
-  font-size: 18px;
-  line-height: 24px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  width: min-content;
-  height: min-content;
-  white-space: nowrap;
-  flex-direction: column;
 }
 
 .textArea.textArea {
@@ -194,9 +186,9 @@
   width: 100%;
 }
 
-.callToAction {  
+.callToAction {
   height: min-content;
-  place-content: space-between  ;
+  place-content: space-between;
   background-color: #fff;
   align-items: center;
 }
@@ -299,9 +291,9 @@
 }
 
 @media (max-width: 430px) {
-    .links {
-      display: none ;
-    }
+  .links {
+    display: none;
+  }
 }
 
 .burgermenu {
@@ -314,7 +306,7 @@
 
 @media (min-width: 431px) {
   .burgermenu {
-    display: none ;
+    display: none;
   }
 }
 
@@ -338,7 +330,7 @@
   background-position: center;
   background-repeat: repeat;
   background-color: #FFA630;
-  background-blend-mode:multiply;
+  background-blend-mode: multiply;
   height: min-content;
   align-self: stretch;
   display: block;
@@ -378,17 +370,24 @@
   gap: 16px;
 }
 
-.welcomeNameOfUser {
+.welcomeNameOfUser, .headline2 {
   color: #5f0f40;
-  font-size: 48px;
-  line-height: 48px;
   font-weight: 900;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
+    'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
   height: min-content;
   align-self: stretch;
   flex-direction: column;
-  
+}
+
+.headline2 {
+  line-height: 36px;
+  font-size: 36px;
+}
+
+.welcomeNameOfUser {
+  font-size: 48px;
+  line-height: 48px;
 }
 
 .youVeBeenInvitedToHelpPickWher {
@@ -397,30 +396,29 @@
 }
 
 @media (min-width: 431px) {
-.youVeBeenInvitedToHelpPickWher {
-  width: 491px;
-}
+  .youVeBeenInvitedToHelpPickWher {
+    width: 491px;
+  }
 }
 
-.textBlock, .textBlock2, .textBlock3, .textBlock4 {
+.textBlock,
+.textBlock2,
+.textBlock3,
+.textBlock4 {
   color: #5f0f40;
   font-size: 24px;
   line-height: 36px;
   font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
 }
 
-.textBlock2 {
-  margin-top: 0;
-}
-
-.textBlock3 .textBlock4 {
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-}
-
+.textBlock2,
 .textBlock4 {
   margin-top: 0;
+}
+
+.textBlock3,
+.textBlock4 {
+  line-height: 32px;
 }
 
 .frame2758 {
@@ -458,7 +456,7 @@
 
 .iPhone13 {
   width: 100%;
-  position:absolute;
+  position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
@@ -476,7 +474,7 @@
     url('/assets/phoneimagesforweb.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size:contain;
+  background-size: contain;
 }
 
 .contentAndImage {
@@ -546,8 +544,7 @@
 }
 
 @media (min-width: 431px) {
-  .joinTheDinderCommunityToday {
-  }
+  .joinTheDinderCommunityToday {}
 }
 
 .loremIpsumDolorSitAmetConsecte {
@@ -601,13 +598,17 @@
     grid-column: span 1;
   }
 }
+
 @media (min-width: 431px) {
   .whyChooseDinder {
     grid-column: span 2;
   }
 }
 
-.rectangle1, .rectangle12, .rectangle13, .rectangle14  {
+.rectangle1,
+.rectangle12,
+.rectangle13,
+.rectangle14 {
   align-self: stretch;
   background-position: center;
   background-repeat: no-repeat;
@@ -615,20 +616,29 @@
 }
 
 @media (min-width: 431px) {
-  .rectangle1, .rectangle12, .rectangle13, .rectangle14  {
+
+  .rectangle1,
+  .rectangle12,
+  .rectangle13,
+  .rectangle14 {
     height: 280px;
   }
 }
 
 @media (max-width: 430px) {
-  .rectangle1, .rectangle12, .rectangle13, .rectangle14  {
+
+  .rectangle1,
+  .rectangle12,
+  .rectangle13,
+  .rectangle14 {
     height: 280px;
   }
 }
+
 .rectangle1 {
   background-image:
-  /* webpackIgnore: true */
-  url('/assets/rectangle13.jpeg');
+    /* webpackIgnore: true */
+    url('/assets/rectangle13.jpeg');
 }
 
 .frame2759 {
@@ -638,17 +648,10 @@
   gap: 16px;
 }
 
-.comprehensiveRestaurantDatabas {
-  color: #333;
-  font-size: 24px;
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
-
-.loremIpsumDolorSitAmetConsecte2, .loremIpsumDolorSitAmetConsecte3, .loremIpsumDolorSitAmetConsecte4, .loremIpsumDolorSitAmetConsecte5 {
+.loremIpsumDolorSitAmetConsecte2,
+.loremIpsumDolorSitAmetConsecte3,
+.loremIpsumDolorSitAmetConsecte4,
+.loremIpsumDolorSitAmetConsecte5 {
   color: #333;
   font-size: 18px;
   line-height: 24px;
@@ -704,26 +707,15 @@
     url('/assets/rectangle12.jpeg');
 }
 
-.easyToUseInterface {
-  color: #333;
-  font-size: 24px;
-  line-height: 32px;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
-  height: min-content;
-  align-self: stretch;
-  flex-direction: column;
-}
-
-
-
-
 .rectangle14 {
   background-image:
-  /* webpackIgnore: true */
-  url('/assets/rectangle14.jpeg');
+    /* webpackIgnore: true */
+    url('/assets/rectangle14.jpeg');
 }
 
-.socialIntegration {
+.socialIntegration,
+.comprehensiveRestaurantDatabas,
+.easyToUseInterface {
   color: #333;
   font-size: 24px;
   line-height: 32px;
@@ -741,13 +733,13 @@
     width: 211px;
     height: 86px;
   }
-  
+
   .applebadge {
     width: 191px;
     height: 63px;
     margin: 13px;
   }
-  
+
   .downloadButtons {
     flex-direction: row;
     gap: 40px;
@@ -759,12 +751,12 @@
     width: 211px;
     height: 86px;
   }
-  
+
   .applebadge {
     width: 191px;
     height: 63px;
   }
-  
+
   .downloadButtons {
     align-items: center;
     flex-direction: column;
@@ -804,7 +796,8 @@
   flex-direction: column;
 }
 
-.frame2754, .actualForm {
+.frame2754,
+.actualForm {
   height: min-content;
   flex-direction: column;
   place-content: flex-end;
@@ -818,13 +811,17 @@
     align-items: flex-end;
     padding: 42px 64px;
   }
-  .actualForm, .frame2754 {
+
+  .actualForm,
+  .frame2754 {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 430px) {
-  .frame2754, .actualForm {
+
+  .frame2754,
+  .actualForm {
     padding: 15px;
     gap: 15px;
     width: 90%;
@@ -843,18 +840,18 @@
   height: min-content;
   align-self: stretch;
   align-items: flex-start;
-  gap: 32px;  
+  gap: 32px;
   background-color: #5f0f40;
 }
 
 @media (min-width: 431px) {
-  .appDownload{
+  .appDownload {
     padding: 32px 148px;
   }
 }
 
 @media (max-width: 430px) {
-  .appDownload{
+  .appDownload {
     padding: 32px 32px;
   }
 }
