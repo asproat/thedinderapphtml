@@ -59,6 +59,7 @@
   font-weight: 700;
   font-size: larger;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .answer {
