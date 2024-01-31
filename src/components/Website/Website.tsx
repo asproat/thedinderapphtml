@@ -60,7 +60,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage }) {
 
   console.log("check lastpart")
   console.log(lastPart)
-  if (lastPart.match(re)) {
+  if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation")  { 
     invitewaitshow = "block"
     console.log("match code")
     dinderCode = lastPart
@@ -127,6 +127,9 @@ export const Website: FC<Props> = memo(function Website({ page, setPage }) {
       );
   }
 
+  if(lastPart == "faqs") {
+    setPage("faqs")
+  }
 
   var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   var videourl = 'https://youtu.be/l5_vsnhvX20'
@@ -166,6 +169,12 @@ export const Website: FC<Props> = memo(function Website({ page, setPage }) {
           <div className={classes.topLink}>Company</div>
           <div className={classes.topLink}>Privacy Policy</div>
           <div onClick={() => setPage("faqs")} className={classes.topLink}>FAQs</div>
+          <div>
+          <BrandsFacebook/>
+          <BrandsYouTube/>
+          <BrandsInstagram/>
+          <BrandsTwitter/>
+          </div>
         </div>
 
       </div>

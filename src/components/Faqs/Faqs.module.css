@@ -171,7 +171,7 @@
   position: initial;
 }
 
-.vector4 {
+.vector, .socialIcon {
   position: initial;
   top: initial;
   right: initial;
@@ -249,8 +249,13 @@
   }
 }
 
+.socialIcon {
+  width: 100px;
+  height: 100px;
+}
+
 .icon {
-  width: 100%;
+    width: 100%;
   height: 100%;
 }
 
