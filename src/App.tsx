@@ -83,13 +83,20 @@ export const App : FC<Props> = memo(function App() {
 
   const [page, setPage] = useState("home")
 
+  const [dinder, setDinder] = useState(null)
+
   if (page == "home") {
+
     return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <Website page={page} setPage={function (d: string): void {
-        history.pushState(new siteStep(d), d, d);
-        setPage(d);
-      } } />
+              history.pushState(new siteStep(d), d, d);
+              setPage(d);
+            } }
+      dinder={null} setDinder={function (d: any): void {
+        setDinder(d)
+      }}
+ />
     </div>
   );
 } else {

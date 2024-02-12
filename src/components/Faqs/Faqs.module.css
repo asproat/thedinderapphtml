@@ -433,7 +433,7 @@
   overflow: visible;
 }
 
-.noThanksIMNotDownloadingYourAp {
+.noThanksIMNotDownloadingYourApp {
   color: #5f0f40;
   font-size: 16px;
   line-height: 32px;
@@ -446,6 +446,7 @@
   align-items: center;
   white-space: nowrap;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .group4 {

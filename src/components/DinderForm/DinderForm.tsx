@@ -2,36 +2,30 @@ import { memo } from 'react';
 import type { FC } from 'react';
 import ReactPlayer from 'react-player'
 import resets from '../_resets.module.css';
-import { BrandsFacebook } from './BrandsFacebook/BrandsFacebook.js';
-import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
-import { BrandsTwitter } from './BrandsTwitter/BrandsTwitter.js';
-import { BrandsYouTube } from './BrandsYouTube/BrandsYouTube.js';
-import { Button_levelPrimaryIconPositio } from './Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
-import { Button_levelSecondaryIconPosit } from './Button_levelSecondaryIconPosit/Button_levelSecondaryIconPosit.js';
-import classes from './Website.module.css';
-import { Group3Icon } from './Group3Icon.js';
-import { GroupIcon2 } from './GroupIcon2.js';
-import { InputField_labelTrueIconFalse } from './InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
-import { MenuMenu_Alt_02 } from './MenuMenu_Alt_02/MenuMenu_Alt_02.js';
-import { TextArea_labelTrue } from './TextArea_labelTrue/TextArea_labelTrue.js';
-import { V6IconFree_styleRegularPadding } from './V6IconFree_styleRegularPadding/V6IconFree_styleRegularPadding.js';
-import { VectorIconInstagram } from './VectorIconInstagram.js';
-import { VectorIconTwitter } from './VectorIconTwitter.js';
-import { VectorIconYouTube } from './VectorIconYouTube.js';
-import { VectorIconFacebook } from './VectorIconFacebook.js';
-import { VectorIconPlumBar } from './VectorIconPlumBar';
+import { BrandsFacebook } from '../Website/BrandsFacebook/BrandsFacebook.js';
+import { BrandsInstagram } from '../Website/BrandsInstagram/BrandsInstagram.js';
+import { BrandsTwitter } from '../Website/BrandsTwitter/BrandsTwitter.js';
+import { BrandsYouTube } from '../Website/BrandsYouTube/BrandsYouTube.js';
+import { Button_levelPrimaryIconPositio } from '../Website/Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
+import classes from '../Website/Website.module.css';
+import { Group3Icon } from '../Website/Group3Icon.js';
+import { GroupIcon2 } from '../Website/GroupIcon2.js';
+import { InputField_labelTrueIconFalse } from '../Website/InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
+import { MenuMenu_Alt_02 } from '../Website/MenuMenu_Alt_02/MenuMenu_Alt_02.js';
+import { TextArea_labelTrue } from '../Website/TextArea_labelTrue/TextArea_labelTrue.js';
 
 import { Amplify, API } from 'aws-amplify';
 
 interface Props {
   className?: string;
-  page?: string;
+  page: string;
   setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
 }
 
-export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder }) {
+
+export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder }) {
 
   console.log("start website")
 
@@ -59,7 +53,6 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
   var urlparts = requestURL.split("/")
   var lastPart = urlparts[urlparts.length - 1]
   var invitewaitshow = "none"
-  var dinderObject : any
 
   console.log("check lastpart")
   console.log(lastPart)
@@ -90,7 +83,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
             document.getElementById("expired")!.style.display = "flex"
           }
           else {
-            dinderObject = response.data
+            setDinder(response.data)
             var dindername = response.data.dindername
             var dindertimestamp = response.data.dinderdate * 1000
             var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
@@ -133,6 +126,8 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
 
   if(lastPart == "faqs") {
     setPage("faqs")
+  } else {
+    setPage("home")
   }
 
   var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -186,17 +181,14 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         <div className={classes.frame2760}>
           <div className={classes.welcomeNameOfUser}>The Dinder App: </div>
           <div className={classes.headline2}>Finally, the answer to "Where are we going out to eat?"</div>
-          <div id="invitationwait" style={{ display: invitewaitshow }}>
-            <div className={classes.textBlock3}>Loading invitation...</div>
-            <progress id="progress" style={{ all: "revert" }} max="100" />
-          </div>
-          <div id="invitation" className={classes.intro} style={{ display: "none" }}>
+          <div id="invitation" className={classes.intro}>
             <div className={classes.welcomeNameOfUser} id="welcome"></div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
-              <div className={classes.textBlock3} id="invitationdetails">
+              <div className={classes.textBlock3}>
+				{dinder.dindername}
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); setPage("dinderform"); setDinder(dinder)}} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
+              <div className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>

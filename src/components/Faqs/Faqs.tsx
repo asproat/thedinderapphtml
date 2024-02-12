@@ -3,8 +3,8 @@ import type { FC } from 'react';
 
 import resets from '../_resets.module.css';
 import { useState } from 'react';
-import { Group3Icon } from './Group3Icon.js';
-import { GroupIcon2 } from './GroupIcon2.js';
+import { Group3Icon } from '../Website/Group3Icon.js';
+import { GroupIcon2 } from '../Website/GroupIcon2.js';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { CCollapse } from '@coreui/react';
 import { CRow } from '@coreui/react';

@@ -11,9 +11,11 @@ interface Props {
   className?: string;
   page: string;
   setPage(d: string): void;
+  dinder: any;
+  setDinder(d: any): void;
 }
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')!).render(  
   <StrictMode>
     <App page={''} setPage={function (d: string): void {
       throw new Error('Function not implemented.');
