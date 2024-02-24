@@ -413,7 +413,14 @@
 }
 
 .textBlock3, .textBlock4 {
-  color: #5f0f40;
+  color: #FF00FF;
+}
+
+.textBlock5 {
+  color: #00FF00;
+}
+
+.textBlock3, .textBlock4, .textBlock5 {
   font-size: 24px;
   line-height: 36px;
   font-weight: 500;

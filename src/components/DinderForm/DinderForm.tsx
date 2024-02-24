@@ -25,9 +25,10 @@ interface Props {
 }
 
 
-export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder }) {
+export const DinderForm: FC<Props> = memo(function DinderForm({ page, setPage, dinder, setDinder }) {
 
   console.log("start website")
+  console.log(dinder)
 
   Amplify.configure({
     API: {
@@ -56,6 +57,7 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
 
   console.log("check lastpart")
   console.log(lastPart)
+  document.getElementById("invitation")!.style.display = "flex"
   if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation")  { 
     invitewaitshow = "block"
     console.log("match code")
@@ -124,7 +126,9 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
       );
   }
 
-  if(lastPart == "faqs") {
+  if(lastPart == "dinderform") {
+    setPage("dinderform")
+  } else if(lastPart == "faqs") {
     setPage("faqs")
   } else {
     setPage("home")
@@ -149,7 +153,8 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
     videoHeight = 9 / 16 * screenWidth + "px"
   }
 
-  console.log("return actual website")
+  console.log("return dinder?")
+  console.log(dinder)
 
   /* @figmaId 154:24 */
   return (
@@ -184,8 +189,8 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
           <div id="invitation" className={classes.intro}>
             <div className={classes.welcomeNameOfUser} id="welcome"></div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
-              <div className={classes.textBlock3}>
-				{dinder.dindername}
+              <div className={classes.textBlock5}>
+				XXX {dinder.dindername} XXX
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
               <div className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
@@ -203,20 +208,6 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
               Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results.
             </div>
           </div>
-          <div className={classes.frame2763}>
-            <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
-            <div className={classes.headline3}>Has this conversation ever happened:</div>
-            <div className={classes.headline3}>“What about restaurant A?”</div>
-            <div className={classes.headline3}>“I can’t eat there. Everything is fried. What about restaurant B?”</div>
-            <div className={classes.headline3}>“No, went there last week.”</div>
-            <div className={classes.headline3}>And the “Where do we eat?” carousel continues.</div>
-            <div className={classes.headline3}>Finding the right restaurant that fits everyone’s needs may seem like finding the Holy Grail.</div>
-            <div className={classes.headline3}>At Dinder, we’ve democratized dining out.</div>
-            <div className={classes.headline3}>We know how difficult and exhausting it can be to get everyone to agree on where to eat. Sure, you can roll the dice and pick a random place. But what if no one likes it? What if there are no gluten-free options for Carol? What if Rick lives too far away? Isn’t Daryl allergic to shellfish?</div>
-            <div className={classes.headline3}>If only there was an app that could help you make the best choice on where to eat that makes everyone happy.</div>
-            <div className={classes.headline3}>Welcome to The Dinder App.</div>
-            <div className={classes.headline3}>Spend less time agonizing and more time socializing.</div>
-          </div>
           <div className={classes.downloadButtons}>
             <div>
               <a href="itms-services://?action=download-manifest&amp;url=https://www.thedinderapp.com/app/manifest.plist" >
@@ -233,108 +224,6 @@ export const DinderForm: FC<Props> = memo(function Website({ page, setPage, dind
             <div className={classes.blue}></div>
           </div>
         </div>
-      </div>
-      <div className={classes.contentAndImage} >
-        <ReactPlayer url={videourl}
-          className={classes.image}
-          width={videoWidth} height={videoHeight}
-        />
-        <div className={classes.intro2}>
-          <div className={classes.joinTheDinderCommunityToday}>What is a Dinder?</div>
-          <div className={classes.loremIpsumDolorSitAmetConsecte}>
-            <p>Dinder is your personal restaurant ranking system that is decided by the people you know. You choose a specific area of town, the time and the date of your event. Dinder takes this information and provides a list of nearby restaurants. Simply share this list with everyone in your dining party so they can help rate the choices. Everyone gets to vote up or down on every restaurant on the list and Dinder ranks your choices from best to worst. </p>
-            <p>Whether you are the host or a guest, everyone can play.</p>
-            <p>Bon Appetit!</p>
-          </div>
-        </div>
-      </div>
-      <div className={classes.featureRow}>
-        <div className={classes.whyChooseDinder}>Why Choose Dinder?</div>
-        <div className={classes.feature}>
-          <div className={classes.rectangle1}></div>
-          <div className={classes.frame2759}>
-            <div className={classes.comprehensiveRestaurantDatabas}>It’s fast. It’s easy. And Dinder takes the guesswork out of where to break bread.</div>
-            <div className={classes.loremIpsumDolorSitAmetConsecte2}>
-              Here’s How:
-              <ol>
-                <li>Pick a Date and Time</li>
-                <li>Pick a Centralized Location Using the Map </li>
-                <li>Push the Button and Create Your Dinder. </li>
-              </ol>
-              That’s it. The Dinder App will generate a link for you to share with everyone in your dinner party! Once they get they get the link, they can vote up or down on the choice. Crowdsource with the people you know to find the perfect place to dine.
-
-
-            </div>
-          </div>
-        </div>
-        <div className={classes.feature}>
-          <div className={classes.rectangle14}></div>
-          <div className={classes.frame2759}>
-            <div className={classes.socialIntegration}>The Dinder App provides all the information you’ll need to make your dining selections, including listings and locations, restaurant ratings and price rankings. </div>
-            <div className={classes.loremIpsumDolorSitAmetConsecte5}>
-
-            </div>
-          </div>
-        </div>
-        <div className={classes.feature}>
-          <div className={classes.rectangle12}></div>
-          <div className={classes.frame2759}>
-            <div className={classes.personalizedRecommendations}> Customize your choice list by including type distance to your desired location, including or excluding fast food, limiting the number of choices and more!</div>
-            <div className={classes.loremIpsumDolorSitAmetConsecte3}>
-            </div>
-          </div>
-        </div>
-        <div className={classes.feature}>
-          <div className={classes.rectangle13}></div>
-          <div className={classes.frame2759}>
-            <div className={classes.easyToUseInterface}>For a small added fee you can get extra benefits, such as deal-breakers/double pluses, comments, and invites to friends of friends.</div>
-            <div className={classes.loremIpsumDolorSitAmetConsecte4}>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.contactForm}>
-        <div className={classes.contactUs}>Contact us</div>
-        <form className={classes.actualForm}>
-          <div className={classes.frame2754}>
-            <div className={classes.frame2753}>
-              <InputField_labelTrueIconFalse
-                className={classes.inputField}
-                text={{
-                  label: <div className={classes.label}>First name</div>,
-                }}
-                name="First Name"
-              />
-              <InputField_labelTrueIconFalse
-                className={classes.inputField2}
-                text={{
-                  label: <div className={classes.label2}>Last name</div>,
-                }}
-                name="Last Name"
-              />
-            </div>
-            <InputField_labelTrueIconFalse
-              className={classes.inputField3}
-              text={{
-                label: <div className={classes.label3}>Email address</div>,
-              }}
-              name="Email Address"
-            />
-            <TextArea_labelTrue
-              className={classes.textArea}
-              text={{
-                label: <div className={classes.label4}>Your message</div>,
-              }}
-              name="Your Message"
-            />
-            <Button_levelPrimaryIconPositio
-              className={classes.button4}
-              text={{
-                button: <div className={classes.button3}>Submit message</div>,
-              }}
-            />
-          </div>
-        </form>
       </div>
       <div className={classes.appDownload}>
         <div className={classes.frame2757}>

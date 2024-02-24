@@ -5,11 +5,14 @@ import classes from './Faqs.module.css';
 import resets from './components/_resets.module.css';
 import { Website } from './components/Website/Website.js';
 import { FaqsAppComponent } from './components/Faqs/Faqs.js';
+import { DinderForm } from './components/DinderForm/DinderForm.js';
 
 interface Props {
   className?: string;
   page: string;
   setPage(d: string): void;
+  dinder: any;
+  setDinder(d: any): void;
 }
 
 console.log("in app.tsx")
@@ -85,12 +88,17 @@ export const App : FC<Props> = memo(function App() {
 
   const [dinder, setDinder] = useState(null)
 
+  console.log("Page is")
+  console.log(page)
+
   if (page == "home") {
 
     return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <Website page={page} setPage={function (d: string): void {
-              history.pushState(new siteStep(d), d, d);
+              history.pushState(new siteStep(d), d, 
+                d.replace('/invitation', '')
+              );              
               setPage(d);
             } }
       dinder={null} setDinder={function (d: any): void {
@@ -99,12 +107,33 @@ export const App : FC<Props> = memo(function App() {
  />
     </div>
   );
+} else if (page == "dinderform") {
+
+  console.log("page now dinderform")
+  console.log(dinder)
+  
+  return (
+  <div className={`${resets.clapyResets} ${classes.root}`}>
+    <DinderForm page={page} setPage={function (d: string): void {
+            history.pushState(new siteStep(d), d, 
+              d.replace('/invitation', '')
+            );
+            setPage(d);
+          } }
+    dinder={dinder} setDinder={function (d: any): void {
+      setDinder(d)
+    }}
+/>
+  </div>
+);
 } else {
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <FaqsAppComponent  page={page} setPage={function (d: string): void {
         setPage(d);
-        history.pushState(new siteStep(d), d, d);
+        history.pushState(new siteStep(d), d, 
+          d.replace('/invitation', '')
+        );
       } } />
     </div>
   );

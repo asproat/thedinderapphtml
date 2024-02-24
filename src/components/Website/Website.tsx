@@ -84,13 +84,14 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         console.log("response")
         console.log(response)
         if (response.data != null) {
+          document.getElementById("dinderCopy")!.style.display = "none"
           console.log(response.data)
           if (response.data == "expired") {
             console.log("expired")
             document.getElementById("expired")!.style.display = "flex"
           }
           else {
-            dinderObject = response.data
+            dinder=response.data
             var dindername = response.data.dindername
             var dindertimestamp = response.data.dinderdate * 1000
             var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
@@ -196,7 +197,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); setPage("dinderform"); setDinder(dinder)}} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>
@@ -211,7 +212,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results.
             </div>
           </div>
-          <div className={classes.frame2763}>
+          <div id="dinderCopy" className={classes.frame2763}>
             <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
             <div className={classes.headline3}>Has this conversation ever happened:</div>
             <div className={classes.headline3}>“What about restaurant A?”</div>
