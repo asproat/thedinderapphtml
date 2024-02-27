@@ -13,6 +13,8 @@ interface Props {
   setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
+  dinderinvitecode: string;
+  setDinderInviteCode(d: string): void;
 }
 
 createRoot(document.getElementById('root')!).render(  

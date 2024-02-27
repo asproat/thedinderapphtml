@@ -12,7 +12,7 @@
 }
 
 :where(.clapyResets),
-:where(.clapyResets) :not(span, a, ul, ol, li, p) {
+:where(.clapyResets) :not(span, a, ul, ol, li, p, table, thead, tbody, tr, td, th) {
   display: flex;
 }
 

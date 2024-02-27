@@ -13,9 +13,13 @@ interface Props {
   setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
+  dinderinvitecode: string;
+  setDinderInviteCode(d: string): void;
 }
 
 console.log("in app.tsx")
+
+var dinderinvitecode=""
 
 class siteStep {
   page: string = "";
@@ -88,6 +92,8 @@ export const App : FC<Props> = memo(function App() {
 
   const [dinder, setDinder] = useState(null)
 
+  const [dinderinvitecode, setDinderInviteCode] = useState("")
+
   console.log("Page is")
   console.log(page)
 
@@ -103,6 +109,9 @@ export const App : FC<Props> = memo(function App() {
             } }
       dinder={null} setDinder={function (d: any): void {
         setDinder(d)
+      }}
+      dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
+        setDinderInviteCode(d)
       }}
  />
     </div>
@@ -122,6 +131,9 @@ export const App : FC<Props> = memo(function App() {
           } }
     dinder={dinder} setDinder={function (d: any): void {
       setDinder(d)
+    }}
+    dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
+      setDinderInviteCode(d)
     }}
 />
   </div>

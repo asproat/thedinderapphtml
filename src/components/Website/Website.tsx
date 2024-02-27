@@ -29,9 +29,11 @@ interface Props {
   setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
+  dinderinvitecode: string;
+  setDinderInviteCode(d: string): void;
 }
 
-export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder }) {
+export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
   console.log("start website")
 
@@ -59,8 +61,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
   var urlparts = requestURL.split("/")
   var lastPart = urlparts[urlparts.length - 1]
   var invitewaitshow = "none"
-  var dinderObject : any
-
+  
   console.log("check lastpart")
   console.log(lastPart)
   if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation")  { 
@@ -197,7 +198,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app {dinderinvitecode}</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>

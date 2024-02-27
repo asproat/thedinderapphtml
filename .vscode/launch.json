@@ -9,7 +9,7 @@
 			"type": "chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://localhost:5173/invitation/325763173730",
+			"url": "http://localhost:5173/invitation/652171143916",
 			"webRoot": "${workspaceFolder}"
 		}
 	]
