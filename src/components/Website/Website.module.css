@@ -18,6 +18,58 @@
   flex-direction: column;
 }
 
+.choiceButton2UpSolid, .choiceButton2UpOutline, .choiceButton2DownSolid, .choiceButton2DownOutline, 
+.choiceButton1UpSolid, .choiceButton1UpOutline, .choiceButton1DownSolid, .choiceButton1DownOutline {
+  align-self: stretch;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30px;
+  width: 30px;
+}
+
+.choiceCell {
+  vertical-align: top;
+  text-align: center;
+  padding: 10px;
+}
+
+.choiceDetails {
+  padding-top: 10px
+}
+
+.choiceButton2DownSolid {
+  background-image: url('/assets/two_arrows_down_red_filled2.svg');
+}
+
+.choiceButton2DownOutline {
+  background-image: url('/assets/two_arrows_down_red_outline2.svg');
+}
+
+.choiceButton2UpSolid {
+  background-image: url('/assets/two_arrows_up_green_filled2.svg');
+}
+
+.choiceButton2UpOutline {
+  background-image: url('/assets/two_arrows_up_green_outline2.svg');
+}
+
+.choiceButton1DownSolid {
+  background-image: url('/assets/one_arrow_down_red_filled2.svg');
+}
+
+.choiceButton1DownOutline {
+  background-image: url('/assets/one_arrow_down_red_outline2.svg');
+}
+
+.choiceButton1UpSolid {
+  background-image: url('/assets/one_arrow_up_green_filled2.svg');
+}
+
+.choiceButton1UpOutline {
+  background-image: url('/assets/one_arrow_up_green_outline2.svg');
+}
+
 .v6IconFree.v6IconFree {
   left: calc(50% - 1px);
   top: 50%;
@@ -325,7 +377,7 @@
 }
 
 .split, .nosplit {
-  background-image: url('/assets/splitpart.png');
+  background-image: url('/assets/splitpart10.png');
   background-position: center;
   background-repeat: repeat;
   background-color: #FFA630;

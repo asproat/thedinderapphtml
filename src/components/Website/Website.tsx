@@ -198,7 +198,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourAp}>No thanks, I’m not downloading your app {dinderinvitecode}</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourApp}>No thanks, I’m not downloading your app {dinderinvitecode}</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>

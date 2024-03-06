@@ -15,6 +15,7 @@ import { MenuMenu_Alt_02 } from '../Website/MenuMenu_Alt_02/MenuMenu_Alt_02.js';
 import { TextArea_labelTrue } from '../Website/TextArea_labelTrue/TextArea_labelTrue.js';
 
 import { Amplify, API } from 'aws-amplify';
+import { basename } from 'path';
 
 interface Props {
   className?: string;
@@ -52,7 +53,6 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   var requestURL = window.location.href
   var urlparts = requestURL.split("/")
   var lastPart = urlparts[urlparts.length - 1]
-  var choiceswaitshow = "block"
 
   console.log("check lastpart")
   console.log(lastPart)
@@ -103,6 +103,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
     }
   };
 
+  function getPlaces() {
   API.post(apiName, path, myInit)
   .then((response) => {
     console.log("responseDF")
@@ -114,14 +115,39 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
       if(choicesTable.rows.length == 0) {
       var choicesHeader = choicesTable.createTHead()
       var choicesHeaderRow = choicesHeader.insertRow()
-      choicesHeaderRow.insertCell().innerText = "Choice Info"
-      choicesHeaderRow.insertCell().innerText = "Rating"
+      choicesHeaderRow.insertCell().outerHTML = "<th>Choice Info</th>"
+      var ratingsTitle = choicesHeaderRow.insertCell()
+      ratingsTitle.outerHTML = "<th>Rating</th>"
+      ratingsTitle.colSpan = 2 
       var choicesBody = choicesTable.createTBody()
       for(const placeId of placeList ) {
         var choiceRow = choicesBody.insertRow()
         var thisPlace = placeDetails[String(placeId)]
-        choiceRow.insertCell().innerText = thisPlace["name"]
-        choiceRow.insertCell().innerHTML = "+ &nbsp; -"        
+        var detailsCell = choiceRow.insertCell()
+        detailsCell.className = classes["choiceDetails"]
+        detailsCell.innerHTML = thisPlace["name"] + "<br/>" +
+          thisPlace["formatted_address"] + "<br/>" +
+          "Rating: " + "*".repeat(thisPlace["rating"]) + " " + String(thisPlace["rating"]) + 
+          " (" + String(thisPlace["user_ratings_total"]) + ") <br/>" +
+          (!("price_level" in thisPlace) ? "" : ("Price Level: " + "$".repeat(thisPlace["price_level"]) + "<br/>")) + 
+          "<a href=" + "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=" + 
+          placeId + " target='_blank'>View Details</a>"
+        if(dinder.dinderOptions.maxDoublePlus > 0) {
+          var doubleupcell = choiceRow.insertCell()
+          doubleupcell.className = classes["choiceCell"]
+          doubleupcell.innerHTML = "<div id='two_up' class='" + classes["choiceButton2UpOutline"] + "'></div>"
+        }
+        var upcell = choiceRow.insertCell()
+        upcell.className = classes["choiceCell"]
+        upcell.innerHTML = "<div id='one_up' class='" + classes["choiceButton1UpOutline"] + "'></div>"
+        var downcell = choiceRow.insertCell()
+        downcell.className = classes["choiceCell"]
+        downcell.innerHTML = "<div id='one_down' class='" + classes["choiceButton1DownOutline"] + "'></div>"
+        if(dinder.dinderOptions.maxDealBreaker > 0) {
+          var doubledowncell = choiceRow.insertCell()
+          doubledowncell.className = classes["choiceCell"]
+          doubledowncell.innerHTML = "<div id='two_down' class='" + classes["choiceButton2DownOutline"] + "'></div>"
+        }
       }
       document.getElementById("choices")!.style.display="block"
       document.getElementById("choiceswait")!.style.display = "none"
@@ -138,6 +164,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
     }
   }
   );
+}
 
   console.log("return dinder?")
   console.log(dinder)
@@ -182,7 +209,8 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
                 <li>you also can't change them later</li>
                 <li>you won't be able to see what ratings others have given</li>
               </ul>
-              <p>If you've changed your mind, you can download the app below and click the link you were sent again. Otherwise, scroll down and pick your ratings.</p>
+              <p>If you've changed your mind, you can download the app below and click the link you were sent again.</p>
+              <p className={ classes.noThanksIMNotDownloadingYourApp } onClick={() => { console.debug("getPlaces"); document.getElementById("choiceswait")!.style.display = "block"; getPlaces(); }}>Otherwise, click here to see the choices.</p>
             </div>
             <div className={classes.downloadButtons}>
             <div>
@@ -194,8 +222,8 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
               <a href='https://play.google.com/store/apps/details?id=com.sproatcentral.dinderandroiddemo'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' className={classes.badge} /></a>
             </div>
           </div>
-          <div id="choiceswait" style={{ display: choiceswaitshow }}>
-            <div className={classes.textBlock3}>Loading invitation...</div>
+          <div id="choiceswait" style={{ display: "none" }}>
+            <div className={classes.textBlock3}>Loading choices...</div>
             <progress id="progress" style={{ all: "revert" }} max="100" />
           </div>
           <table id="choices" style={{ display: "none" }} >

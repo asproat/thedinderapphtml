@@ -332,7 +332,7 @@
 }
 
 .faq {
-  background-image: url('/assets/splitpart.png');
+  background-image: url('/assets/splitpart10.png');
   background-position: center;
   background-repeat: repeat;
   background-color: #FFA630;
@@ -469,6 +469,25 @@
   bottom: 0;
   align-items: flex-start;
 }
+
+.choiceButton2DownSolid, .choiceButton2DownOutline {
+  align-self: stretch;
+  border: 3px solid #FF00FF;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30px;
+  display:block;
+}
+
+.choiceButton2DownSolid {
+  background-image: url('/assets/two_arrows_down_red_filled.svg');
+}
+
+.choiceButton2DownOutline {
+  background-image: url('/assets/two_arrows_down_red_outline.svg');
+}
+
 
 .blue {
   position: absolute;
