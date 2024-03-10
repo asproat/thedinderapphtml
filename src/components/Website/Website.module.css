@@ -18,14 +18,34 @@
   flex-direction: column;
 }
 
-.choiceButton2UpSolid, .choiceButton2UpOutline, .choiceButton2DownSolid, .choiceButton2DownOutline, 
-.choiceButton1UpSolid, .choiceButton1UpOutline, .choiceButton1DownSolid, .choiceButton1DownOutline {
+.choiceButton2UpSolid, 
+.choiceButton2DownSolid, 
+.choiceButton1UpSolid, 
+.choiceButton1DownSolid, 
+.choiceButton2UpOutline, 
+.choiceButton2DownOutline, 
+.choiceButton1UpOutline, 
+.choiceButton1DownOutline,
+.choiceButton2UpOutlineFaded, 
+.choiceButton2DownOutlineFaded, 
+.choiceButton1UpOutlineFaded, 
+.choiceButton1DownOutlineFaded 
+{
   align-self: stretch;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 30px;
   width: 30px;
+  cursor: pointer;
+}
+
+.choiceButton2UpOutlineFaded, 
+.choiceButton2DownOutlineFaded, 
+.choiceButton1UpOutlineFaded, 
+.choiceButton1DownOutlineFaded 
+{
+  opacity: 0.25;
 }
 
 .choiceCell {
@@ -42,7 +62,7 @@
   background-image: url('/assets/two_arrows_down_red_filled2.svg');
 }
 
-.choiceButton2DownOutline {
+.choiceButton2DownOutline, .choiceButton2DownOutlineFaded  {
   background-image: url('/assets/two_arrows_down_red_outline2.svg');
 }
 
@@ -50,7 +70,7 @@
   background-image: url('/assets/two_arrows_up_green_filled2.svg');
 }
 
-.choiceButton2UpOutline {
+.choiceButton2UpOutline, .choiceButton2UpOutlineFaded  {
   background-image: url('/assets/two_arrows_up_green_outline2.svg');
 }
 
@@ -58,7 +78,7 @@
   background-image: url('/assets/one_arrow_down_red_filled2.svg');
 }
 
-.choiceButton1DownOutline {
+.choiceButton1DownOutline, .choiceButton1DownOutlineFaded  {
   background-image: url('/assets/one_arrow_down_red_outline2.svg');
 }
 
@@ -66,7 +86,7 @@
   background-image: url('/assets/one_arrow_up_green_filled2.svg');
 }
 
-.choiceButton1UpOutline {
+.choiceButton1UpOutline, .choiceButton1UpOutlineFaded  {
   background-image: url('/assets/one_arrow_up_green_outline2.svg');
 }
 
@@ -415,7 +435,6 @@
   flex: 1;
   flex-direction: column;
   vertical-align: top;
-  gap: 32px;
 }
 
 .frame2763 {
@@ -432,7 +451,7 @@
   gap: 16px;
 }
 
-.welcomeNameOfUser, .headline2, .headline3 {
+.welcomeNameOfUser, .headline1, .headline2, .headline3 {
   color: #5f0f40;
   font-weight: 900;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -443,8 +462,15 @@
 }
 
 .headline2 {
+  line-height: 48px;
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.headline2 {
   line-height: 36px;
   font-size: 36px;
+  margin-bottom: 32px;
 }
 
 .headline3 {
@@ -454,8 +480,9 @@
 
 
 .welcomeNameOfUser {
-  font-size: 48px;
-  line-height: 48px;
+  font-size: 30px;
+  line-height: 32px;
+  margin-bottom: 16px;
 }
 
 .youVeBeenInvitedToHelpPickWher {
@@ -480,8 +507,20 @@
   margin-top: 0;
 }
 
+.choiceRatingDetails {
+  vertical-align: top;
+}
+
+.bigStar {
+  color: gold;
+  font-size: 48px;
+  line-height: 0px;
+  margin-top: 20px;
+}
+
 .textBlock3, .textBlock4 {
   line-height: 32px;
+  margin-bottom: 16px;
 }
 
 .frame2758 {
@@ -789,7 +828,7 @@
   
   .downloadButtons {
     flex-direction: row;
-    gap: 40px;
+    gap: 20px;
   }
 }
 

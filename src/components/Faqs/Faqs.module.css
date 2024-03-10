@@ -363,7 +363,6 @@
   flex: 1;
   flex-direction: column;
   vertical-align: top;
-  gap: 32px;
 }
 
 .intro {
