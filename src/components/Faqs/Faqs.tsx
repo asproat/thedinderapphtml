@@ -77,7 +77,7 @@ console.log("return actual website")
       </div>
       <div className={classes.faq}>
     <CRow>
-    <div className={classes.textBlock3}>FAQs</div>
+    <div className={classes.headline2}>FAQs</div>
     <div  
       className={classes.question} 
       onClick={() => toggleIsShown(0)} >What's a Dinder?</div>

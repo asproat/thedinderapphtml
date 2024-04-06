@@ -21,6 +21,10 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App page={''} setPage={function (d: string): void {
       throw new Error('Function not implemented.');
+    } } dinder={undefined} setDinder={function (d: any): void {
+      throw new Error('Function not implemented.');
+    } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+      throw new Error('Function not implemented.');
     } } />
   </StrictMode>
 );

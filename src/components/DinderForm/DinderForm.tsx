@@ -88,9 +88,21 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   var placeDetails = JSON.parse("{\"a\":\"b\"}")
   var placeValues = JSON.parse("{\"a\":\"b\"}") 
   var choices = ""
-  Object.keys(dinder.choices).toSorted().map((key, index) => (
-    placeList.push(key.substring(4))
-  ))
+  var placeIds = Object.keys(dinder.choices).sort((n1,n2) => {
+    if (n1 > n2) {
+        return 1;
+    }
+
+    if (n1 < n2) {
+        return -1;
+    }
+
+    return 0;
+})
+
+placeIds.forEach(function (key){
+  placeList.push(key.substring(4))
+});
 
   console.log("placelist")
   console.log(placeList)
@@ -119,12 +131,12 @@ function ratingClick(placeId: string, rating: int) {
   } else {
     placeValues[placeId] = rating
     if(dinder.dinderOptions.maxDoublePlus > 0) {
-      document.getElementById(placeId + "2up")!.className = classes.choiceButton2UpOutlineFaded
+      document.getElementById(placeId + "2up")!.className = classes.choiceButton2UpOutline
     }
-    document.getElementById(placeId + "1up")!.className = classes.choiceButton1UpOutlineFaded
-    document.getElementById(placeId + "1down")!.className = classes.choiceButton1DownOutlineFaded
+    document.getElementById(placeId + "1up")!.className = classes.choiceButton1UpOutline
+    document.getElementById(placeId + "1down")!.className = classes.choiceButton1DownOutline
     if(dinder.dinderOptions.maxDealBreaker > 0) {
-      document.getElementById(placeId + "2down")!.className = classes.choiceButton2DownOutlineFaded    
+      document.getElementById(placeId + "2down")!.className = classes.choiceButton2DownOutline
     }
     switch(rating) {
       case 2:

@@ -19,8 +19,6 @@ interface Props {
 
 console.log("in app.tsx")
 
-var dinderinvitecode=""
-
 class siteStep {
   page: string = "";
   sequence: number = 0;

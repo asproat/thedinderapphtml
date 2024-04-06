@@ -61,11 +61,13 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
   var urlparts = requestURL.split("/")
   var lastPart = urlparts[urlparts.length - 1]
   var invitewaitshow = "none"
-  
+  var detailshow = "flex"
+
   console.log("check lastpart")
   console.log(lastPart)
   if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation")  { 
     invitewaitshow = "block"
+    detailshow = "none"
     console.log("match code")
     dinderCode = lastPart
     dinderinvitecode = dinderCode.substring(8)
@@ -186,7 +188,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
       </div>
       <div className={classes.split}>
         <div className={classes.frame2760}>
-          <div className={classes.welcomeNameOfUser}>The Dinder App: </div>
+          <div className={classes.headline1}>The Dinder App: </div>
           <div className={classes.headline2}>Finally, the answer to "Where are we going out to eat?"</div>
           <div id="invitationwait" style={{ display: invitewaitshow }}>
             <div className={classes.textBlock3}>Loading invitation...</div>
@@ -210,10 +212,10 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
           <div id="expired" className={classes.intro} style={{ display: "none" }}>
             <div className={classes.welcomeNameOfUser} >Dinder has ended</div>
             <div className={classes.youVeBeenInvitedToHelpPickWher}>
-              Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to see the results.
+              Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to get the results.
             </div>
           </div>
-          <div id="dinderCopy" className={classes.frame2763}>
+          <div id="dinderCopy" className={classes.frame2763}  style={{ display: detailshow }}>
             <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
             <div className={classes.headline3}>Has this conversation ever happened:</div>
             <div className={classes.headline3}>“What about restaurant A?”</div>
