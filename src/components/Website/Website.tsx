@@ -6,7 +6,7 @@ import { BrandsFacebook } from './BrandsFacebook/BrandsFacebook.js';
 import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
 import { BrandsTwitter } from './BrandsTwitter/BrandsTwitter.js';
 import { BrandsYouTube } from './BrandsYouTube/BrandsYouTube.js';
-import { Button_levelPrimaryIconPositio } from './Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
+import { Button_levelPrimaryIconPosition } from './Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
 import { Button_levelSecondaryIconPosit } from './Button_levelSecondaryIconPosit/Button_levelSecondaryIconPosit.js';
 import classes from './Website.module.css';
 import { Group3Icon } from './Group3Icon.js';
@@ -200,7 +200,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourApp}>No thanks, I’m not downloading your app {dinderinvitecode}</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>
@@ -339,7 +339,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               }}
               name="Your Message"
             />
-            <Button_levelPrimaryIconPositio
+            <Button_levelPrimaryIconPosition
               className={classes.button4}
               text={{
                 button: <div className={classes.button3}>Submit message</div>,

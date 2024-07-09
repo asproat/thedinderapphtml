@@ -5,12 +5,23 @@
 	"version": "0.2.0",
 	"configurations": [
 
+
+
 		{
 			"type": "chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://localhost:5173/invitation/099753321242",
+			"url": "http://localhost:5173/invitation/006641345766",
 			"webRoot": "${workspaceFolder}"
-		}
+		},
+		{
+			"name": "Launch Firefox",
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"url": "http://localhost:3005",
+			"webRoot": "${workspaceFolder}",
+			"tmpDir": "/home/asproat/tmp/firefox"
+		}		
 	]
 }

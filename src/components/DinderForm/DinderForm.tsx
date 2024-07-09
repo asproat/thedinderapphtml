@@ -6,7 +6,7 @@ import { BrandsFacebook } from '../Website/BrandsFacebook/BrandsFacebook.js';
 import { BrandsInstagram } from '../Website/BrandsInstagram/BrandsInstagram.js';
 import { BrandsTwitter } from '../Website/BrandsTwitter/BrandsTwitter.js';
 import { BrandsYouTube } from '../Website/BrandsYouTube/BrandsYouTube.js';
-import { Button_levelPrimaryIconPositio } from '../Website/Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
+import { Button_levelPrimaryIconPosition } from '../Website/Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
 import classes from '../Website/Website.module.css';
 import { Group3Icon } from '../Website/Group3Icon.js';
 import { GroupIcon2 } from '../Website/GroupIcon2.js';
@@ -16,6 +16,7 @@ import { TextArea_labelTrue } from '../Website/TextArea_labelTrue/TextArea_label
 
 import { Amplify, API } from 'aws-amplify';
 import { basename } from 'path';
+import { UUID } from 'crypto';
 import { int } from 'aws-sdk/clients/datapipeline';
 import React from 'react';
 
@@ -54,6 +55,16 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   var requestURL = window.location.href
   var urlparts = requestURL.split("/")
   var lastPart = urlparts[urlparts.length - 1]
+  var nocomment = "none"
+  var noname = "none"
+
+  if(dinder.dinderOptions.allowComments) {
+    nocomment = "block"
+  }
+
+  if(dinder.dinderOptions.requireNames) {
+    noname = "block"
+  }
 
   console.log("check lastpart")
   console.log(lastPart)
@@ -104,18 +115,43 @@ placeIds.forEach(function (key){
   placeList.push(key.substring(4))
 });
 
-  console.log("placelist")
-  console.log(placeList)
+console.log("placelist")
+console.log(placeList)
 
-  const apiName = 'dinder';
-  const path = '/getPlaceDetails';
-  const myInit = {
-    headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
-    response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
-    body: {
-      placeList
-    }
-  };
+
+const apiName = 'dinder';
+const path = '/getPlaceDetails';
+const myInit = {
+  headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+  response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+  body: {
+    placeList
+  }
+};
+
+interface Score {
+  score: int;
+}
+
+interface Scores {
+  [key: string]: Score;
+}
+
+var dinderUpdate = {
+  "dinderid": dinder.dinderid,
+    "userid": crypto.randomUUID(),    
+    "scores": {} as Scores
+}
+
+const setRatingsPath = '/' + dinder.id + dinderinvitecode;
+const setRatingsInit = {  
+  useCors: true,
+  withCredentials: false,
+  headers: {
+    "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+  response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
+  body: dinderUpdate
+};
 
 function ratingClick(placeId: string, rating: int) {
   if(placeValues[placeId] == rating) {
@@ -154,8 +190,30 @@ function ratingClick(placeId: string, rating: int) {
   }
 }
 
+function getRatingForPlace(placeId: string) {
+  var rating = 0
+
+  if(document.getElementById(placeId + "2up")!.className == classes.choiceButton2UpSolid) {
+    rating = 2
+  } else if(document.getElementById(placeId + "2down")!.className == classes.choiceButton2DownSolid) {
+      rating = -2
+  } else if(document.getElementById(placeId + "1up")!.className == classes.choiceButton1UpSolid) {
+    rating = 1
+  } else if(document.getElementById(placeId + "1down")!.className == classes.choiceButton1DownSolid) {
+    rating = -1
+  }
+
+  return rating
+}
+
+
+
 function ratingClick2(placeId: string, rating: int) {
   console.log(placeId + ":" + rating);
+}
+
+function mapLink(placeId: string) {
+  return "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=" + placeId
 }
 
 
@@ -181,6 +239,25 @@ function setRatingClick(placeId: string, rating: int) {
       ratingClick(placeId, rating);
     });
 }
+ 
+function sendRatings() {
+  for(const placeId of placeIds ) {
+    if(getRatingForPlace(placeId) != 0) {
+      dinderUpdate.scores[placeId] = { score: getRatingForPlace(placeId) }
+    }
+  }
+
+
+  API.post(apiName, setRatingsPath, setRatingsInit)
+  .then((response) => {
+    console.log("response")
+    console.log(response)
+  })
+  .catch((error) => {
+    console.log("error")
+    console.log(error)
+  })
+}
 
 function getPlaces() {
   API.post(apiName, path, myInit)
@@ -190,20 +267,24 @@ function getPlaces() {
     if (response.data != null) {
       console.log(response.data)
       placeDetails=JSON.parse(response.data.body)
-      for(const placeId of placeList ) {
+      for(const placeId of placeIds ) {
         placeValues[placeId] = 0
       }
       document.getElementById("choiceswait")!.style.display = "none"
       document.getElementById("choices")!.outerHTML = ReactDomServer.renderToString(getDetailTable())
-      document.getElementById("choices")!.style.display="block"
-      for(const placeId of placeList ) {
+      document.getElementById("choicesBlock")!.style.display="block"
+      for(const placeId of placeIds ) {
         if(dinder.dinderOptions.maxDoublePlus > 0) {
           setRatingClick(placeId, 2)
+        } else {
+          document.getElementById(placeId + "2up")!.style.display = "none"
         }
         setRatingClick(placeId, 1)
         setRatingClick(placeId, -1)
         if(dinder.dinderOptions.maxDealBreaker > 0) {
           setRatingClick(placeId, -2)
+        }else {
+          document.getElementById(placeId + "2down")!.style.display = "none"
         }
       }      
     }
@@ -221,21 +302,26 @@ function getPlaces() {
 };
 
   function getDetailTable() : React.JSX.Element {
-    var placeRows = placeList
+    var placeRows = placeIds
+    var details 
 
-    const tableElement =  <table id="choices" style={{ display: 'none' }}>
+    const tableElement =  <table id="choices" >
       <thead>
         <th>Choice Info</th>
         <th colSpan={4}>Ratings</th>
       </thead>
-      {placeRows.map(key =>
-        <tr key={key + "row"}>
+      {placeRows.map(key =>        
+      {
+        details = placeDetails[key.substring(4)]
+
+        return (
+          <tr key={key + "row"}>          
           <td className={classes.choiceDetails}>
-            {placeDetails[key].name}<br/>
-            {placeDetails[key].formatted_address}<br/>
-            Price Level: {"$".repeat(placeDetails[key].price_level)}<br/>
-            <div className={classes.choiceRatingDetails}>Rating:<span className={classes.bigStar}> {"*".repeat(placeDetails[key].rating)} </span>{placeDetails[key].rating} ({placeDetails[key].user_ratings_total})</div>
-            <a href='https://www.google.com/maps/search/?api=1&query=Google&query_place_id={key}' target='_blank'>View Details</a>
+            {details.name}<br/>
+            {details.formatted_address}<br/>
+            Price Level: {"$".repeat(details.price_level)}<br/>
+            <div className={classes.choiceRatingDetails}>Rating:<span className={classes.bigStar}> {"*".repeat(details.rating)} </span>{details.rating} ({details.user_ratings_total})</div>
+            <a href={mapLink(key)} target='_blank'>View Details</a>
           </td>
           <td className={classes.choiceCell}>
             { ratingDiv(key, 2) } 
@@ -250,7 +336,8 @@ function getPlaces() {
             { ratingDiv(key, -2) } 
           </td>
         </tr>
-      )}
+      )
+      })}
     </table>
 
     return tableElement
@@ -300,26 +387,22 @@ function getPlaces() {
                 <li>you have to rate them all now, you can't come back and finish</li>
                 <li>you also can't change them later</li>
                 <li>you won't be able to see what ratings others have given</li>
+                <li style={{ display: noname }} >you can't change the your name from what was on invitation</li>
+                <li style={{ display: nocomment }} >you can't leave comments</li>
               </ul>
               <p style={{marginBottom: 8 }}>If you've changed your mind, you can download the app below and click the link you were sent again.</p>
               <p className={classes.noThanksIMNotDownloadingYourApp} onClick={() => { console.debug("getPlaces"); document.getElementById("choiceswait")!.style.display = "block"; getPlaces(); }}>Otherwise, click here to see the choices.</p>
             </div>
-            <div className={classes.downloadButtons} >
-            <div>
-              <a href="itms-services://?action=download-manifest&amp;url=https://www.thedinderapp.com/app/manifest.plist" >
-                <img className={classes.applebadge} src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1531008000" alt="Download on the App Store" ></img>
-              </a>
-            </div>
-            <div>
-              <a href='https://play.google.com/store/apps/details?id=com.sproatcentral.dinderandroiddemo'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' className={classes.badge} /></a>
-            </div>
-          </div>
           <div id="choiceswait" style={{ display: "none" }}>
             <div className={classes.textBlock3}>Loading choices...</div>
             <progress id="progress" style={{ all: "revert" }} max="100" />
           </div>
-          <div id="choices" style={{ display: "none" }} >
+          <div id="choicesBlock" style={{ display: "none" }}>
+          <div id="choices">
           </div>
+          <div className={classes.button3} onClick={() => sendRatings()}>Submit Ratings</div>
+      </div>
+
         </div>
       </div>
       <div className={classes.appDownload}>

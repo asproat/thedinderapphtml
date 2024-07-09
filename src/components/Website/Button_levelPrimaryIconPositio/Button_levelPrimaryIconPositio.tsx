@@ -14,7 +14,7 @@ interface Props {
   };
 }
 /* @figmaId 3:21 */
-export const Button_levelPrimaryIconPositio: FC<Props> = memo(function Button_levelPrimaryIconPositio(props = {}) {
+export const Button_levelPrimaryIconPosition: FC<Props> = memo(function Button_levelPrimaryIconPositio(props = {}) {
   return (
     <input type="submit" className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}/>
   );
