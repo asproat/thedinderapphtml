@@ -1,4 +1,4 @@
-import { Component, memo } from 'react';
+import { useState, memo } from 'react';
 import type { FC } from 'react';
 import ReactDomServer from 'react-dom/server';
 import resets from '../_resets.module.css';
@@ -42,7 +42,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
           name: 'dinder',
           endpoint: 'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage',
           custom_header: async () => {
-            return { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' };
+            return { "x-api-key": import.meta.env.VITE_AWS_API_KEY };
             // Alternatively, with Cognito User Pools use this:
             // return { Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}` }
             // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
@@ -98,7 +98,16 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   var placeList: string[] = []
   var placeDetails = JSON.parse("{\"a\":\"b\"}")
   var placeValues = JSON.parse("{\"a\":\"b\"}") 
-  var choices = ""
+  const [isChecked, setIsChecked] = useState(false)
+  const checkHandler = () => {
+    setIsChecked(!isChecked)
+  }
+  const allRated = () => {
+    var allSet = Object.keys(placeValues).length == placeIds.length 
+    var noZero = Object.values(placeValues).filter((word) => word == 0).length == 0
+    return allSet && noZero
+  }
+
   var placeIds = Object.keys(dinder.choices).sort((n1,n2) => {
     if (n1 > n2) {
         return 1;
@@ -118,11 +127,10 @@ placeIds.forEach(function (key){
 console.log("placelist")
 console.log(placeList)
 
-
 const apiName = 'dinder';
 const path = '/getPlaceDetails';
 const myInit = {
-  headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+  headers: { "x-api-key": import.meta.env.VITE_AWS_API_KEY },
   response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
   body: {
     placeList
@@ -148,7 +156,7 @@ const setRatingsInit = {
   useCors: true,
   withCredentials: false,
   headers: {
-    "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+    "x-api-key": import.meta.env.VITE_AWS_API_KEY },
   response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
   body: dinderUpdate
 };
@@ -241,6 +249,10 @@ function setRatingClick(placeId: string, rating: int) {
 }
  
 function sendRatings() {
+  document.getElementById("submitsuccess")!.style.display="none"
+  document.getElementById("submiterror")!.style.display="none"
+  document.getElementById("submitwait")!.style.display="block"
+
   for(const placeId of placeIds ) {
     if(getRatingForPlace(placeId) != 0) {
       dinderUpdate.scores[placeId] = { score: getRatingForPlace(placeId) }
@@ -252,10 +264,15 @@ function sendRatings() {
   .then((response) => {
     console.log("response")
     console.log(response)
+    document.getElementById("choicesBlock")!.style.display="none"
+    document.getElementById("submitwait")!.style.display="none"
+    document.getElementById("submitsuccess")!.style.display="block"
   })
   .catch((error) => {
     console.log("error")
     console.log(error)
+    document.getElementById("submitwait")!.style.display="none"
+    document.getElementById("submiterror")!.style.display="block"
   })
 }
 
@@ -267,9 +284,7 @@ function getPlaces() {
     if (response.data != null) {
       console.log(response.data)
       placeDetails=JSON.parse(response.data.body)
-      for(const placeId of placeIds ) {
-        placeValues[placeId] = 0
-      }
+      placeValues = {}
       document.getElementById("choiceswait")!.style.display = "none"
       document.getElementById("choices")!.outerHTML = ReactDomServer.renderToString(getDetailTable())
       document.getElementById("choicesBlock")!.style.display="block"
@@ -346,6 +361,12 @@ function getPlaces() {
   console.log("return dinder?")
   console.log(dinder)
   
+  const isZero = (value: number) => value == 0;
+
+function checkZero(value: number) {
+  return value == 0;
+}
+
   /* @figmaId 154:24 */
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
@@ -381,28 +402,54 @@ function getPlaces() {
             <div className={classes.welcomeNameOfUser} id="welcome">
               Okay { dinder.privateIds[dinderinvitecode].sentName },
             </div>
-            <div className={classes.textBlock3} style={{display:"block", marginBlockEnd: 0 }}>
+            <div id='lastChance' className={classes.textBlock3} style={{display:"block", marginBlockEnd: 0 }}>
               <p>You can use this webpage to rate the restaurants for {dinder.dindername}, but... </p>
               <ul>
-                <li>you have to rate them all now, you can't come back and finish</li>
+                <li>you have to choose all your ratings now, you can't come back and finish</li>
                 <li>you also can't change them later</li>
                 <li>you won't be able to see what ratings others have given</li>
+                <li>you won't be able to see the selected choice when voting has ended</li>
                 <li style={{ display: noname }} >you can't change the your name from what was on invitation</li>
                 <li style={{ display: nocomment }} >you can't leave comments</li>
               </ul>
               <p style={{marginBottom: 8 }}>If you've changed your mind, you can download the app below and click the link you were sent again.</p>
-              <p className={classes.noThanksIMNotDownloadingYourApp} onClick={() => { console.debug("getPlaces"); document.getElementById("choiceswait")!.style.display = "block"; getPlaces(); }}>Otherwise, click here to see the choices.</p>
+              <div className={classes.downloadButtons}>
+            <div>
+              <a href="itms-services://?action=download-manifest&amp;url=https://www.thedinderapp.com/app/manifest.plist" >
+                <img className={classes.applebadge} src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1531008000" alt="Download on the App Store" ></img>
+              </a>
+            </div>
+            <div>
+              <a href='https://play.google.com/store/apps/details?id=com.sproatcentral.dinderandroiddemo'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' className={classes.badge} /></a>
+            </div>
+          </div>
+              <p className={classes.noThanksImNotDownloadingYourApp} onClick={() => { console.debug("getPlaces"); document.getElementById("lastChance")!.style.display = "none"; document.getElementById("choiceswait")!.style.display = "block"; getPlaces(); }}>Otherwise, click here to see the choices.</p>
             </div>
           <div id="choiceswait" style={{ display: "none" }}>
             <div className={classes.textBlock3}>Loading choices...</div>
             <progress id="progress" style={{ all: "revert" }} max="100" />
           </div>
           <div id="choicesBlock" style={{ display: "none" }}>
+          <div className={classes.textBlock3} style={{display:"block", marginBlockEnd: 0 }}>
+              <p>You can use this webpage to rate the restaurants for {dinder.dindername}. When you're finished, click the "Submit" button at the bottom of the list.</p>
+              </div>
           <div id="choices">
           </div>
-          <div className={classes.button3} onClick={() => sendRatings()}>Submit Ratings</div>
+          <div id="skipAllChoices" className={classes.choiceDetails} style={{display:"none", marginBlockEnd: 0 }}>
+              <input type='checkbox' id='skipAllCheckbox' onChange={checkHandler} checked={isChecked} />&nbsp;<label htmlFor='skipAllCheckbox'> I understand that I have not rated all the choices and that I cannot rate them later.</label>
+              </div>
+          <div className={classes.button3} onClick={() => {if(allRated() || isChecked ) { sendRatings() } else { document.getElementById("skipAllChoices")!.style.display = "flex";  } } }>Submit Ratings</div>
       </div>
-
+      <div id="submitwait" style={{ display: "none" }}>
+            <div className={classes.textBlock3}>Saving ratings...</div>
+            <progress id="progress" style={{ all: "revert" }} max="100" />
+          </div>
+      <div id="submitsuccess" className={classes.textBlock3} style={{display:"none", marginBlockEnd: 0 }}>
+              <p>Your ratings have been saved. Hopefully, the host will let you know when a final choice has been selected.</p>
+              </div>
+            <div id="submiterror" className={classes.textBlock3} style={{display:"none", marginBlockEnd: 0 }}>
+              <p>There was an issue saving your ratings. Please try again.</p>
+              </div>
         </div>
       </div>
       <div className={classes.appDownload}>
@@ -417,6 +464,8 @@ function getPlaces() {
           <div onClick={() => setPage("faqs")} className={classes.bottomLink}>FAQs</div>
         </div>
       </div>
+
+
       <script>
       </script>
     </div>

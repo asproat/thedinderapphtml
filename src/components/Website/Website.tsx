@@ -35,6 +35,8 @@ interface Props {
 
 export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
+  const apikey = import.meta.env.VITE_AWS_API_KEY
+
   console.log("start website")
 
   Amplify.configure({
@@ -44,7 +46,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
           name: 'dinder',
           endpoint: 'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage',
           custom_header: async () => {
-            return { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' };
+            return { "x-api-key": apikey };
             // Alternatively, with Cognito User Pools use this:
             // return { Authorization: `Bearer ${(await Auth.currentSession()).getAccessToken().getJwtToken()}` }
             // return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` }
@@ -74,8 +76,10 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
 
     const apiName = 'dinder';
     const path = '/' + dinderCode;
+    console.log("check process")
+    console.log(process.env.NODE_ENV)
     const myInit = {
-      headers: { "x-api-key": 'dkDjxPPDyy2AG0kSj32882neBjtJRAH06gEHtOB2' },
+      headers: { "x-api-key": apikey },
       response: true // OPTIONAL (return the entire Axios response object instead of only response.data)
     };
 
@@ -200,7 +204,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksIMNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksImNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>
