@@ -14,8 +14,13 @@
   font-weight: 600;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
-  width: 127px;
   flex-direction: column;
+  width: max-content;
+  background-color: #068d9d;
+  border-radius: 15px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .choiceButton2UpSolid, 
@@ -408,6 +413,7 @@
   align-items: relative;
 }
 
+
 .nosplit {
   grid-template-columns: 1fr;
   padding: 32px 60px;
@@ -422,10 +428,10 @@
 }
 
 @media (max-width: 430px) {
-  .split {
+  .split, .nosplit {
     gap: 20px;
     background-size: contain;
-    padding: 40px 40px;
+    padding: 20px 20px;
     grid-template-columns: 1fr;
   }
 }
@@ -679,7 +685,7 @@
 @media (min-width: 431px) {
   .featureRow {
     align-self: stretch;
-    padding: 64px 120px;
+    padding: 64px 64px;
     grid-template-columns: 1fr 1fr;
   }
 }

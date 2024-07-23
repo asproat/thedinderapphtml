@@ -6,22 +6,15 @@ import { BrandsFacebook } from './BrandsFacebook/BrandsFacebook.js';
 import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
 import { BrandsTwitter } from './BrandsTwitter/BrandsTwitter.js';
 import { BrandsYouTube } from './BrandsYouTube/BrandsYouTube.js';
-import { Button_levelPrimaryIconPosition } from './Button_levelPrimaryIconPositio/Button_levelPrimaryIconPositio.js';
-import { Button_levelSecondaryIconPosit } from './Button_levelSecondaryIconPosit/Button_levelSecondaryIconPosit.js';
 import classes from './Website.module.css';
 import { Group3Icon } from './Group3Icon.js';
 import { GroupIcon2 } from './GroupIcon2.js';
 import { InputField_labelTrueIconFalse } from './InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
 import { MenuMenu_Alt_02 } from './MenuMenu_Alt_02/MenuMenu_Alt_02.js';
 import { TextArea_labelTrue } from './TextArea_labelTrue/TextArea_labelTrue.js';
-import { V6IconFree_styleRegularPadding } from './V6IconFree_styleRegularPadding/V6IconFree_styleRegularPadding.js';
-import { VectorIconInstagram } from './VectorIconInstagram.js';
-import { VectorIconTwitter } from './VectorIconTwitter.js';
-import { VectorIconYouTube } from './VectorIconYouTube.js';
-import { VectorIconFacebook } from './VectorIconFacebook.js';
-import { VectorIconPlumBar } from './VectorIconPlumBar';
-
 import { Amplify, API } from 'aws-amplify';
+import { SendEmailCommand, SendEmailResponse, SESClient } from '@aws-sdk/client-ses';
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
 interface Props {
   className?: string;
@@ -33,18 +26,73 @@ interface Props {
   setDinderInviteCode(d: string): void;
 }
 
+/* 
+'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage'
+'us-east-1'
+'us-east-1:dab98b4b-ca16-45e7-905d-95e7101f22df'
+*/
+
+
 export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
-  const apikey = import.meta.env.VITE_AWS_API_KEY
+  const apikey = import.meta.env.VITE_AWS_API_KEY;
+  const awsregion = import.meta.env.VITE_AWS_REGION;
+  const sesidentitypool = import.meta.env.VITE_AWS_SES_IDENTITY_POOL;
+  const endpoint = import.meta.env.VITE_AWS_API_ENDPOINT;
 
   console.log("start website")
+
+  function sendMessage() {
+
+    var param = {
+      Source: "support@thedinderapp.com",
+      Destination: {
+        ToAddresses: ["support@thedinderapp.com"]
+      },
+      Message: {
+        Body: {
+          Html: {
+            Charset: "UTF-8",
+            Data: (document.forms[0].elements.namedItem('First Name')! as HTMLInputElement).value + " " +
+              (document.forms[0].elements.namedItem('Last Name')! as HTMLInputElement).value + "<br/>" +
+              (document.forms[0].elements.namedItem('Email Address')! as HTMLInputElement).value + "<br/>" +
+              (document.forms[0].elements.namedItem('Your Message')! as HTMLInputElement).value
+          }
+        },
+        Subject: {
+          Charset: "UTF-8",
+          Data: "Website Message"
+        }
+      }
+    };
+
+    var sc = new SESClient({
+      region: awsregion,
+      credentials:
+      fromCognitoIdentityPool({
+        clientConfig: { region: awsregion }, 
+        identityPoolId: sesidentitypool
+      })
+    });
+
+    sc.send(new SendEmailCommand(param),
+      function (err, data) {
+        if (err) {
+          console.error(err, err.stack);
+          document.getElementById("notSent")!.style.display = "block";
+        } else {
+          console.log(data);
+          document.getElementById("sent")!.style.display = "block";
+          }
+      });
+    };
 
   Amplify.configure({
     API: {
       endpoints: [
         {
           name: 'dinder',
-          endpoint: 'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage',
+          endpoint: endpoint,
           custom_header: async () => {
             return { "x-api-key": apikey };
             // Alternatively, with Cognito User Pools use this:
@@ -67,7 +115,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
 
   console.log("check lastpart")
   console.log(lastPart)
-  if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation")  { 
+  if (lastPart.match(re) && urlparts[urlparts.length - 2] == "invitation") {
     invitewaitshow = "block"
     detailshow = "none"
     console.log("match code")
@@ -98,7 +146,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
             document.getElementById("expired")!.style.display = "flex"
           }
           else {
-            dinder=response.data
+            dinder = response.data
             var dindername = response.data.dindername
             var dindertimestamp = response.data.dinderdate * 1000
             var dinderdate = new Date(dindertimestamp).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
@@ -139,7 +187,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
       );
   }
 
-  if(lastPart == "faqs") {
+  if (lastPart == "faqs") {
     setPage("faqs")
   }
 
@@ -182,16 +230,16 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
           <div className={classes.topLink}>Privacy Policy</div>
           <div onClick={() => setPage("faqs")} className={classes.topLink}>FAQs</div>
           <div>
-          <BrandsFacebook/>
-          <BrandsYouTube/>
-          <BrandsInstagram/>
-          <BrandsTwitter/>
+            <BrandsFacebook />
+            <BrandsYouTube />
+            <BrandsInstagram />
+            <BrandsTwitter />
           </div>
         </div>
 
       </div>
-      <div className={classes.split}>
-        <div className={classes.frame2760}>
+      <div className={classes.split} >
+        <div className={classes.frame2760} >
           <div className={classes.headline1}>The Dinder App: </div>
           <div className={classes.headline2}>Finally, the answer to "Where are we going out to eat?"</div>
           <div id="invitationwait" style={{ display: invitewaitshow }}>
@@ -219,7 +267,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               Sorry, the voting for that Dinder has ended. You might contact the person who sent it to you to get the results.
             </div>
           </div>
-          <div id="dinderCopy" className={classes.frame2763}  style={{ display: detailshow }}>
+          <div id="dinderCopy" className={classes.frame2763} style={{ display: detailshow }}>
             <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
             <div className={classes.headline3}>Has this conversation ever happened:</div>
             <div className={classes.headline3}>“What about restaurant A?”</div>
@@ -343,12 +391,13 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               }}
               name="Your Message"
             />
-            <Button_levelPrimaryIconPosition
-              className={classes.button4}
-              text={{
-                button: <div className={classes.button3}>Submit message</div>,
-              }}
-            />
+            <div className={classes.button} onClick={async () => {
+              console.log("before send message")
+              await sendMessage();
+              console.log("after send message")
+            }} >Submit message</div>
+            <div id="sent" className={classes.bottomLink} style={{ display: "none" }}>Message sent!</div>
+            <div id="notSent" className={classes.bottomLink} style={{ display: "none" }}>Error sending message. Please try again!</div>
           </div>
         </form>
       </div>
