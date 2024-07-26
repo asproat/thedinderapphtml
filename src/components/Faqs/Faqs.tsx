@@ -95,7 +95,7 @@ console.log("return actual website")
         <CCollapse visible={question[1]}>
             <div className={classes.answer} 
               onClick={() => toggleIsShown(1)} >
-              That’s Google’s fault. We use a service provided by Google to find restaurants and get information about them. We wish we could, but we can’t. They only allow us to keep an identifier for the restaurants, no other information. Not the name, address, rating, etc. So, every time you open a Dinder, if we haven’t fetched the other information since the last time you started the app, we have to get them again.
+              That’s Google’s fault. We use a service provided by Google to find restaurants and get information about them. They only allow us to keep an identifier for the restaurants, no other information. Not the name, address, rating, etc. We wish we could, but we can’t. So, every time you open a Dinder, if we haven’t fetched the other information since the last time you started the app, we have to get them again.
           </div>
         </CCollapse>
     </CRow>

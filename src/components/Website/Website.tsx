@@ -26,13 +26,6 @@ interface Props {
   setDinderInviteCode(d: string): void;
 }
 
-/* 
-'https://jtytzf5c12.execute-api.us-east-1.amazonaws.com/Stage'
-'us-east-1'
-'us-east-1:dab98b4b-ca16-45e7-905d-95e7101f22df'
-*/
-
-
 export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
   const apikey = import.meta.env.VITE_AWS_API_KEY;
