@@ -7,7 +7,7 @@ import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
 import { BrandsTwitter } from './BrandsTwitter/BrandsTwitter.js';
 import { BrandsYouTube } from './BrandsYouTube/BrandsYouTube.js';
 import classes from './Website.module.css';
-import { Group3Icon } from './Group3Icon.js';
+import { Group3Icon } from './Group3IconA.js';
 import { GroupIcon2 } from './GroupIcon2.js';
 import { InputField_labelTrueIconFalse } from './InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
 import { MenuMenu_Alt_02 } from './MenuMenu_Alt_02/MenuMenu_Alt_02.js';
@@ -15,6 +15,13 @@ import { TextArea_labelTrue } from './TextArea_labelTrue/TextArea_labelTrue.js';
 import { Amplify, API } from 'aws-amplify';
 import { SendEmailCommand, SendEmailResponse, SESClient } from '@aws-sdk/client-ses';
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
+import 'react-router-dom';
+import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { HomeLogo } from './HomeLogo/HomeLogo';
+import { TopLink } from './TopLink/TopLink';
+          
+const history = createBrowserHistory();
 
 interface Props {
   className?: string;
@@ -162,9 +169,13 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
             }
           }
         } else {
-          document.getElementById("invalid")!.style.display = "flex"
+          if(document.getElementById("invalid") != null) {
+            document.getElementById("invalid")!.style.display = "flex"
+          }
+          if(document.getElementById("invitationwait") != null) {} {
+            document.getElementById("invitationwait")!.style.display = "none"
+          }
         }
-        document.getElementById("invitationwait")!.style.display = "none"
       })
       .catch((error) => {
         console.log("get error")
@@ -174,9 +185,13 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         } else {
           console.log(error.request)
         }
-        document.getElementById("invalid")!.style.display = "flex"
-        document.getElementById("invitationwait")!.style.display = "none"
-      }
+        if(document.getElementById("invalid") != null) {
+          document.getElementById("invalid")!.style.display = "flex"
+        }
+        if(document.getElementById("invitationwait") != null) {
+          document.getElementById("invitationwait")!.style.display = "none"
+        }
+      }      
       );
   }
 
@@ -202,7 +217,61 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
     videoWidth = screenWidth + "px"
     videoHeight = 9 / 16 * screenWidth + "px"
   }
-
+  var currentSequence = 0;
+  class siteStep {
+    page: string = "";
+    sequence: number = 0;
+  
+    constructor(newName: string){
+      this.page = newName;
+      this.sequence = ++currentSequence;
+      
+      console.log("sequence is now");
+      console.log(this.sequence);
+    }
+  }
+  
+  function handlePopStateEvent(e: any) {
+    e.preventDefault();      
+  
+    console.log("useEffect");
+    console.log(e);
+    console.log("pop state");
+    console.log(e.state);
+    console.log("currentsequence");
+    console.log(currentSequence);
+  
+    if(e.state != null) {
+      console.log((e.state as siteStep).page);
+      console.log((e.state as siteStep).sequence);
+      console.log(currentSequence);
+      // back
+      if((e.state as siteStep).sequence == currentSequence) {
+        console.log("back");
+        currentSequence--;
+        console.log("currentSequence now: " + currentSequence);
+        history.back();
+        console.log("after history back");
+        setPage((e.state as siteStep).page);
+        console.log("after set page");
+      } else if ((e.state as siteStep).sequence > currentSequence) {
+        console.log("forward")
+        currentSequence++;
+        setPage((e.state as siteStep).page);
+        history.forward();
+      }
+    } else {
+      setPage("home");
+    }
+    console.log("useEffect end");
+  
+    console.log(e);
+  
+    console.log("Check if the function Working")
+  
+  }
+  window.addEventListener("popstate", handlePopStateEvent)
+  
   console.log("return actual website")
 
   /* @figmaId 154:24 */
@@ -212,25 +281,28 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         <div className={classes.burgermenu}>
           <MenuMenu_Alt_02 />
         </div>
-        <div className={classes.group3} onClick={() => setPage("home")}>
-          <div className={classes.group2}>
-            <GroupIcon2 className={classes.icon} />
-          </div>
-          <div className={classes.thedinderappCom}>thedinderapp.com</div>
-        </div>
-        <div className={classes.links}>
+        <BrowserRouter  >
+        <Routes>
+          <Route path="/home" element={
+          <HomeLogo />
+          }>
+          </Route>
+          </Routes>
+          </BrowserRouter>
+          <div className={classes.links}>
           <div className={classes.topLink}>Company</div>
           <div className={classes.topLink}>Privacy Policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.topLink}>FAQs</div>
+          <div onClick={() => {setPage("faqs"); window.history.pushState({}, "", "/faqs");}} className={classes.topLink}>FAQs</div>
           <div>
             <BrandsFacebook />
             <BrandsYouTube />
             <BrandsInstagram />
             <BrandsTwitter />
           </div>
-        </div>
 
+          </div>
       </div>
+      
       <div className={classes.split} >
         <div className={classes.frame2760} >
           <div className={classes.headline1}>The Dinder App: </div>

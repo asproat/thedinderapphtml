@@ -6,6 +6,9 @@ import resets from './components/_resets.module.css';
 import { Website } from './components/Website/Website.js';
 import { FaqsAppComponent } from './components/Faqs/Faqs.js';
 import { DinderForm } from './components/DinderForm/DinderForm.js';
+import { createBrowserHistory } from 'history';
+          
+const history = createBrowserHistory();
 
 interface Props {
   className?: string;
@@ -26,7 +29,8 @@ class siteStep {
   constructor(newName: string){
     this.page = newName;
     this.sequence = ++currentSequence;
-    //history.pushState(this, newName, newName)
+    
+    history.push(newName); //, newName.replace('/invitation', ''));
     console.log("sequence is now");
     console.log(this.sequence);
   }
@@ -36,47 +40,46 @@ var currentSequence = 0;
 
 export const App : FC<Props> = memo(function App() {
 
-  useEffect(() => {
-    function handlePopStateEvent(e: any) {
-      e.preventDefault();      
+    useEffect(() => {
+      function handlePopStateEvent(e: any) {
+        e.preventDefault();      
 
-      console.log("useEffect");
-      console.log(e);
-      console.log("pop state");
-      console.log(e.state);
-      console.log("currentsequence");
-      console.log(currentSequence);
-
-      /*
-      if(e.state != null) {
-        console.log((e.state as siteStep).page);
-        console.log((e.state as siteStep).sequence);
+        console.log("useEffect");
+        console.log(e);
+        console.log("pop state");
+        console.log(e.state);
+        console.log("currentsequence");
         console.log(currentSequence);
-        // back
-        if((e.state as siteStep).sequence == currentSequence) {
-          console.log("back");
-          currentSequence--;
-          console.log("currentSequence now: " + currentSequence);
-          history.back();
-          console.log("after history back");
-          setPage((e.state as siteStep).page);
-          console.log("after set page");
-        } else if ((e.state as siteStep).sequence > currentSequence) {
-          console.log("forward")
-          currentSequence++;
-          setPage((e.state as siteStep).page);
-          history.forward();
-        }
-      } else {
-        setPage("home");
-      }
-      console.log("useEffect end");
-  
-      console.log(e);
-      */
-      console.log("Check if the function Working")
 
-    }
+        if(e.state != null) {
+          console.log((e.state as siteStep).page);
+          console.log((e.state as siteStep).sequence);
+          console.log(currentSequence);
+          // back
+          if((e.state as siteStep).sequence == currentSequence) {
+            console.log("back");
+            currentSequence--;
+            console.log("currentSequence now: " + currentSequence);
+            history.back();
+            console.log("after history back");
+            setPage((e.state as siteStep).page);
+            console.log("after set page");
+          } else if ((e.state as siteStep).sequence > currentSequence) {
+            console.log("forward")
+            currentSequence++;
+            setPage((e.state as siteStep).page);
+            history.forward();
+          }
+        } else {
+          setPage("home");
+        }
+        console.log("useEffect end");
+    
+        console.log(e);
+
+        console.log("Check if the function Working")
+
+      }
 
     console.log("Check if Effect Working")
 
@@ -100,9 +103,6 @@ export const App : FC<Props> = memo(function App() {
     return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <Website page={page} setPage={function (d: string): void {
-              history.pushState(new siteStep(d), d, 
-                d.replace('/invitation', '')
-              );              
               setPage(d);
             } }
       dinder={null} setDinder={function (d: any): void {
@@ -122,9 +122,7 @@ export const App : FC<Props> = memo(function App() {
   return (
   <div className={`${resets.clapyResets} ${classes.root}`}>
     <DinderForm page={page} setPage={function (d: string): void {
-            history.pushState(new siteStep(d), d, 
-              d.replace('/invitation', '')
-            );
+            history.push(d);
             setPage(d);
           } }
     dinder={dinder} setDinder={function (d: any): void {
@@ -141,9 +139,6 @@ export const App : FC<Props> = memo(function App() {
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <FaqsAppComponent  page={page} setPage={function (d: string): void {
         setPage(d);
-        history.pushState(new siteStep(d), d, 
-          d.replace('/invitation', '')
-        );
       } } />
     </div>
   );

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import resets from '../_resets.module.css';
 import { useState } from 'react';
-import { Group3Icon } from '../Website/Group3Icon.js';
+import { Group3Icon } from '../Website/Group3IconA.js';
 import { GroupIcon2 } from '../Website/GroupIcon2.js';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { CCollapse } from '@coreui/react';
@@ -53,8 +53,64 @@ function toggleIsShown(index: number){
     });
 }
 
-console.log("return actual website")
+var currentSequence = 0;
 
+class siteStep {
+  page: string = "";
+  sequence: number = 0;
+
+  constructor(newName: string){
+    this.page = newName;
+    this.sequence = ++currentSequence;
+    
+    history.pushState(this, newName, newName.replace('/invitation', ''));
+    console.log("sequence is now");
+    console.log(this.sequence);
+  }
+}
+
+function handlePopStateEvent(e: any) {
+  e.preventDefault();      
+
+  console.log("useEffect");
+  console.log(e);
+  console.log("pop state");
+  console.log(e.state);
+  console.log("currentsequence");
+  console.log(currentSequence);
+
+  if(e.state != null) {
+    console.log((e.state as siteStep).page);
+    console.log((e.state as siteStep).sequence);
+    console.log(currentSequence);
+    // back
+    if((e.state as siteStep).sequence == currentSequence) {
+      console.log("back");
+      currentSequence--;
+      console.log("currentSequence now: " + currentSequence);
+      history.back();
+      console.log("after history back");
+      setPage((e.state as siteStep).page);
+      console.log("after set page");
+    } else if ((e.state as siteStep).sequence > currentSequence) {
+      console.log("forward")
+      currentSequence++;
+      setPage((e.state as siteStep).page);
+      history.forward();
+    }
+  } else {
+    setPage("home");
+  }
+  console.log("useEffect end");
+
+  console.log(e);
+
+  console.log("Check if the function Working")
+
+}
+window.addEventListener("popstate", handlePopStateEvent)
+
+console.log("return actual website")
 /* @figmaId 154:24 */
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
@@ -62,7 +118,7 @@ console.log("return actual website")
         <div className={classes.burgermenu}>
           <MenuMenu_Alt_02 />
         </div>
-        <div className={classes.group3} onClick={() => setPage("home")}>
+        <div className={classes.group3} >
           <div className={classes.group2}>
             <GroupIcon2 className={classes.icon} />
           </div>
