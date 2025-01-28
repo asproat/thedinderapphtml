@@ -22,15 +22,13 @@ import React from 'react';
 
 interface Props {
   className?: string;
-  page: string;
-  setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
   dinderinvitecode: string;
   setDinderInviteCode(d: string): void;
 }
 
-export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
+export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
   console.log("start website")
   console.log(dinder)
@@ -72,16 +70,6 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   console.log(dinderinvitecode)
   console.log("end show")
   //document.getElementById("invitation")!.style.display = "flex"
-
-  if (lastPart == "dinderform") {
-    setPage("dinderform")
-  } else if (lastPart == "faqs") {
-    setPage("faqs")
-  } else {
-    setPage("home")
-  }
-
-  var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
   const mql = window.matchMedia('(max-width: 600px)');
 
@@ -329,34 +317,34 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
         details = placeDetails[key.substring(4)]
 
         return (
-        <>
-          <tr key={key + "row"} style={{marginTop: "10px"}}>
-            <td className={classes.choiceDetails}>
-              {details.name}<br />
-              <a href={mapLink(key)} target='_blank'>View Details</a>
-            </td>
-            <td className={classes.choiceCell}>
-              {ratingDiv(key, 2)}
-            </td>
-            <td className={classes.choiceCell}>
-              {ratingDiv(key, 1)}
-            </td>
-            <td className={classes.choiceCell}>
-              {ratingDiv(key, -1)}
-            </td>
-            <td className={classes.choiceCell}>
-              {ratingDiv(key, -2)}
-            </td>
-          </tr>
-          <tr style={{borderBottom: "1px solid black" }}  key={key + "row2"}>
+          <>
+            <tr key={key + "row"} style={{ marginTop: "10px" }}>
+              <td className={classes.choiceDetails}>
+                {details.name}<br />
+                <a href={mapLink(key)} target='_blank'>View Details</a>
+              </td>
+              <td className={classes.choiceCell}>
+                {ratingDiv(key, 2)}
+              </td>
+              <td className={classes.choiceCell}>
+                {ratingDiv(key, 1)}
+              </td>
+              <td className={classes.choiceCell}>
+                {ratingDiv(key, -1)}
+              </td>
+              <td className={classes.choiceCell}>
+                {ratingDiv(key, -2)}
+              </td>
+            </tr>
+            <tr style={{ borderBottom: "1px solid black" }} key={key + "row2"}>
               <td className={classes.choiceDetails} colSpan={5}>
                 {details.formatted_address}<br />
                 Price Level: {details.price_level == 0 ? "?" : "$".repeat(details.price_level)}<br />
-                <div style={{marginBottom: "10px"}} className={classes.choiceRatingDetails}>Rating:&nbsp;&nbsp;<span className={classes.bigStar}>{"*".repeat(details.rating)}</span>&nbsp;{details.rating}&nbsp;({details.user_ratings_total})</div>
+                <div style={{ marginBottom: "10px" }} className={classes.choiceRatingDetails}>Rating:&nbsp;&nbsp;<span className={classes.bigStar}>{"*".repeat(details.rating)}</span>&nbsp;{details.rating}&nbsp;({details.user_ratings_total})</div>
               </td>
-          </tr>
-        </>
-    )
+            </tr>
+          </>
+        )
       })}
     </table>
 
@@ -375,29 +363,6 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
   /* @figmaId 154:24 */
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
-      <div className={classes.callToAction}>
-        <div className={classes.burgermenu}>
-          <MenuMenu_Alt_02 />
-        </div>
-        <div className={classes.group3} onClick={() => setPage("home")}>
-          <div className={classes.group2}>
-            <GroupIcon2 className={classes.icon} />
-          </div>
-          <div className={classes.thedinderappCom}>thedinderapp.com</div>
-        </div>
-        <div className={classes.links}>
-          <div className={classes.topLink}>Company</div>
-          <div className={classes.topLink}>Privacy Policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.topLink}>FAQs</div>
-          <div>
-            <BrandsFacebook />
-            <BrandsYouTube />
-            <BrandsInstagram />
-            <BrandsTwitter />
-          </div>
-        </div>
-
-      </div>
       <div className={classes.nosplit}>
         <div className={classes.frame2760}>
           <div className={classes.headline1}>The Dinder App: </div>
@@ -455,20 +420,6 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { page,
           </div>
         </div>
       </div>
-      <div className={classes.appDownload}>
-        <div className={classes.frame2757}>
-          <div className={classes.group32} onClick={() => setPage("home")}>
-            <Group3Icon className={classes.icon} />
-          </div>
-        </div>
-        <div className={classes.frame2751}>
-          <div className={classes.bottomLink}>Company</div>
-          <div className={classes.bottomLink}>Privacy policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.bottomLink}>FAQs</div>
-        </div>
-      </div>
-
-
       <script>
       </script>
     </div>

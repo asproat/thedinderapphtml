@@ -18,7 +18,8 @@ interface Props {
 /* @figmaId 3:390 */
 export const BrandsInstagram: FC<Props> = memo(function BrandsInstagram(props = {}) {
   return (
-    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
+    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}  
+      onClick={ () => window.open("https://www.instagram.com/dinderinstgram/", '_blank')} >
       <div className={`${props.classes?.vector || ''} ${classes.vector}`}>
         {props.swap?.vector || <VectorIcon className={classes.icon} />}
       </div>

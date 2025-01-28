@@ -2,38 +2,26 @@ import { memo } from 'react';
 import type { FC } from 'react';
 import ReactPlayer from 'react-player'
 import resets from '../_resets.module.css';
-import { BrandsFacebook } from './BrandsFacebook/BrandsFacebook.js';
-import { BrandsInstagram } from './BrandsInstagram/BrandsInstagram.js';
-import { BrandsTwitter } from './BrandsTwitter/BrandsTwitter.js';
-import { BrandsYouTube } from './BrandsYouTube/BrandsYouTube.js';
 import classes from './Website.module.css';
-import { Group3Icon } from './Group3IconA.js';
-import { GroupIcon2 } from './GroupIcon2.js';
 import { InputField_labelTrueIconFalse } from './InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
-import { MenuMenu_Alt_02 } from './MenuMenu_Alt_02/MenuMenu_Alt_02.js';
 import { TextArea_labelTrue } from './TextArea_labelTrue/TextArea_labelTrue.js';
 import { Amplify, API } from 'aws-amplify';
 import { SendEmailCommand, SendEmailResponse, SESClient } from '@aws-sdk/client-ses';
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 import 'react-router-dom';
-import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { HomeLogo } from './HomeLogo/HomeLogo';
-import { TopLink } from './TopLink/TopLink';
-          
+
 const history = createBrowserHistory();
 
 interface Props {
   className?: string;
-  page?: string;
-  setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
   dinderinvitecode: string;
   setDinderInviteCode(d: string): void;
 }
 
-export const Website: FC<Props> = memo(function Website({ page, setPage, dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
+export const Website: FC<Props> = memo(function Website({ dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {
 
   const apikey = import.meta.env.VITE_AWS_API_KEY;
   const awsregion = import.meta.env.VITE_AWS_REGION;
@@ -69,10 +57,10 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
     var sc = new SESClient({
       region: awsregion,
       credentials:
-      fromCognitoIdentityPool({
-        clientConfig: { region: awsregion }, 
-        identityPoolId: sesidentitypool
-      })
+        fromCognitoIdentityPool({
+          clientConfig: { region: awsregion },
+          identityPoolId: sesidentitypool
+        })
     });
 
     sc.send(new SendEmailCommand(param),
@@ -83,9 +71,9 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         } else {
           console.log(data);
           document.getElementById("sent")!.style.display = "block";
-          }
+        }
       });
-    };
+  };
 
   Amplify.configure({
     API: {
@@ -169,10 +157,10 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
             }
           }
         } else {
-          if(document.getElementById("invalid") != null) {
+          if (document.getElementById("invalid") != null) {
             document.getElementById("invalid")!.style.display = "flex"
           }
-          if(document.getElementById("invitationwait") != null) {} {
+          if (document.getElementById("invitationwait") != null) { } {
             document.getElementById("invitationwait")!.style.display = "none"
           }
         }
@@ -185,19 +173,16 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
         } else {
           console.log(error.request)
         }
-        if(document.getElementById("invalid") != null) {
+        if (document.getElementById("invalid") != null) {
           document.getElementById("invalid")!.style.display = "flex"
         }
-        if(document.getElementById("invitationwait") != null) {
+        if (document.getElementById("invitationwait") != null) {
           document.getElementById("invitationwait")!.style.display = "none"
         }
-      }      
+      }
       );
   }
 
-  if (lastPart == "faqs") {
-    setPage("faqs")
-  }
 
   var darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   var videourl = 'https://youtu.be/l5_vsnhvX20'
@@ -221,88 +206,21 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
   class siteStep {
     page: string = "";
     sequence: number = 0;
-  
-    constructor(newName: string){
+
+    constructor(newName: string) {
       this.page = newName;
       this.sequence = ++currentSequence;
-      
+
       console.log("sequence is now");
       console.log(this.sequence);
     }
   }
-  
-  function handlePopStateEvent(e: any) {
-    e.preventDefault();      
-  
-    console.log("useEffect");
-    console.log(e);
-    console.log("pop state");
-    console.log(e.state);
-    console.log("currentsequence");
-    console.log(currentSequence);
-  
-    if(e.state != null) {
-      console.log((e.state as siteStep).page);
-      console.log((e.state as siteStep).sequence);
-      console.log(currentSequence);
-      // back
-      if((e.state as siteStep).sequence == currentSequence) {
-        console.log("back");
-        currentSequence--;
-        console.log("currentSequence now: " + currentSequence);
-        history.back();
-        console.log("after history back");
-        setPage((e.state as siteStep).page);
-        console.log("after set page");
-      } else if ((e.state as siteStep).sequence > currentSequence) {
-        console.log("forward")
-        currentSequence++;
-        setPage((e.state as siteStep).page);
-        history.forward();
-      }
-    } else {
-      setPage("home");
-    }
-    console.log("useEffect end");
-  
-    console.log(e);
-  
-    console.log("Check if the function Working")
-  
-  }
-  window.addEventListener("popstate", handlePopStateEvent)
-  
+
   console.log("return actual website")
 
   /* @figmaId 154:24 */
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
-      <div className={classes.callToAction}>
-        <div className={classes.burgermenu}>
-          <MenuMenu_Alt_02 />
-        </div>
-        <BrowserRouter  >
-        <Routes>
-          <Route path="/home" element={
-          <HomeLogo />
-          }>
-          </Route>
-          </Routes>
-          </BrowserRouter>
-          <div className={classes.links}>
-          <div className={classes.topLink}>Company</div>
-          <div className={classes.topLink}>Privacy Policy</div>
-          <div onClick={() => {setPage("faqs"); window.history.pushState({}, "", "/faqs");}} className={classes.topLink}>FAQs</div>
-          <div>
-            <BrandsFacebook />
-            <BrandsYouTube />
-            <BrandsInstagram />
-            <BrandsTwitter />
-          </div>
-
-          </div>
-      </div>
-      
       <div className={classes.split} >
         <div className={classes.frame2760} >
           <div className={classes.headline1}>The Dinder App: </div>
@@ -317,7 +235,7 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); setPage("dinderform"); }} className={classes.noThanksImNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); }} className={classes.noThanksImNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>
@@ -435,24 +353,24 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
                 name="First Name"
               />
               <InputField_labelTrueIconFalse
-                className={classes.inputField2}
+                className={classes.inputField}
                 text={{
-                  label: <div className={classes.label2}>Last name</div>,
+                  label: <div className={classes.label}>Last name</div>,
                 }}
                 name="Last Name"
               />
             </div>
             <InputField_labelTrueIconFalse
-              className={classes.inputField3}
+              className={classes.inputField}
               text={{
-                label: <div className={classes.label3}>Email address</div>,
+                label: <div className={classes.label}>Email address</div>,
               }}
               name="Email Address"
             />
             <TextArea_labelTrue
               className={classes.textArea}
               text={{
-                label: <div className={classes.label4}>Your message</div>,
+                label: <div className={classes.label}>Your message</div>,
               }}
               name="Your Message"
             />
@@ -465,18 +383,6 @@ export const Website: FC<Props> = memo(function Website({ page, setPage, dinder,
             <div id="notSent" className={classes.bottomLink} style={{ display: "none" }}>Error sending message. Please try again!</div>
           </div>
         </form>
-      </div>
-      <div className={classes.appDownload}>
-        <div className={classes.frame2757}>
-          <div className={classes.group32} onClick={() => setPage("home")}>
-            <Group3Icon className={classes.icon} />
-          </div>
-        </div>
-        <div className={classes.frame2751}>
-          <div className={classes.bottomLink}>Company</div>
-          <div className={classes.bottomLink}>Privacy policy</div>
-          <div onClick={() => setPage("faqs")} className={classes.bottomLink}>FAQs</div>
-        </div>
       </div>
       <script>
       </script>

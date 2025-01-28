@@ -6,11 +6,10 @@ import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
 import './resets.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 interface Props {
   className?: string;
-  page: string;
-  setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
   dinderinvitecode: string;
@@ -19,12 +18,36 @@ interface Props {
 
 createRoot(document.getElementById('root')!).render(  
   <StrictMode>
-    <App page={''} setPage={function (d: string): void {
-      throw new Error('Function not implemented.');
-    } } dinder={undefined} setDinder={function (d: any): void {
-      throw new Error('Function not implemented.');
-    } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
-      throw new Error('Function not implemented.');
-    } } />
+    <BrowserRouter>
+      <Routes>
+      <Route index element={<App
+          dinder={undefined} setDinder={function (d: any): void {
+          throw new Error('Function not implemented.');
+        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />} />
+        <Route path="/" element={<App page={''} setPage={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } dinder={undefined} setDinder={function (d: any): void {
+          throw new Error('Function not implemented.');
+        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />} />
+        <Route path="/home" element={<App page={''} setPage={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } dinder={undefined} setDinder={function (d: any): void {
+          throw new Error('Function not implemented.');
+        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />} />
+        <Route path="/faqs" element={<App page={''} setPage={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } dinder={undefined} setDinder={function (d: any): void {
+          throw new Error('Function not implemented.');
+        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );

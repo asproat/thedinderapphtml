@@ -1,23 +1,23 @@
 .root {
   position: relative;
-  width: 44px;
-  height: 25px;
+  width: max-content;
+  height: max-content;
   align-items: flex-start;
   overflow: hidden;
 }
 .vector {
-  position: relative;
-  left: 0.8333%;
-  right: 0.8333%;
-  top: 0.1667%;
-  bottom: 70.8333%;
-  max-width: 100%;
-  max-height: 100%;
+  position: fixed;
+  justify-content: top;
+  align-items: start;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
   overflow: visible;
 }
 .icon {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
 }
 .vector2 {
   position: relative;
@@ -46,4 +46,18 @@
 .icon3 {
   width: 100%;
   height: 100%;
+}
+
+.openMenu {
+  position:fixed;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  background-color: #fff;
+  position: relative;
+  width: max-content;
+  height: max-content;
+  align-items: flex-start;
+  padding: 15px;
+  overflow: hidden;
 }

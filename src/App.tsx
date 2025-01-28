@@ -1,19 +1,29 @@
 import { memo, useEffect } from 'react';
 import type { FC } from 'react';
 import { useState } from 'react';
-import classes from './Faqs.module.css';
+import classes from './components/Website/Website.module.css';
 import resets from './components/_resets.module.css';
 import { Website } from './components/Website/Website.js';
 import { FaqsAppComponent } from './components/Faqs/Faqs.js';
 import { DinderForm } from './components/DinderForm/DinderForm.js';
 import { createBrowserHistory } from 'history';
+import { Group3Icon } from './components/Website/Group3IconA';
+import { Link, Route, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { MenuMenu_Alt_02 } from './components/Website/MenuMenu_Alt_02/MenuMenu_Alt_02';
+import { HomeLogo } from './components/Website/HomeLogo/HomeLogo';
+import { BrandsFacebook } from './components/Website/BrandsFacebook/BrandsFacebook';
+import { BrandsYouTube } from './components/Website/BrandsYouTube/BrandsYouTube';
+import { BrandsInstagram } from './components/Website/BrandsInstagram/BrandsInstagram';
+import { BrandsBluesky } from './components/Website/BrandsBluesky/BrandsBluesky';
+import { BrandsThreads } from './components/Website/BrandsThreads/BrandsThreads';
+import { BrandsTwitter } from './components/Website/BrandsTwitter/BrandsTwitter';
+import { TopLink } from './components/Website/TopLink/TopLink';
           
 const history = createBrowserHistory();
 
 interface Props {
   className?: string;
-  page: string;
-  setPage(d: string): void;
   dinder: any;
   setDinder(d: any): void;
   dinderinvitecode: string;
@@ -22,109 +32,79 @@ interface Props {
 
 console.log("in app.tsx")
 
-class siteStep {
-  page: string = "";
-  sequence: number = 0;
-
-  constructor(newName: string){
-    this.page = newName;
-    this.sequence = ++currentSequence;
-    
-    history.push(newName); //, newName.replace('/invitation', ''));
-    console.log("sequence is now");
-    console.log(this.sequence);
+class DinderHeader extends React.Component {
+  render() {
+    return (
+      <div className={classes.callToAction} >
+        <div className={classes.burgermenu} >
+          <MenuMenu_Alt_02 />
+        </div>
+          <HomeLogo/>
+          <div className={classes.links}>
+            <TopLink to="/faqs" linkLabel='Company' />
+            <TopLink to="/faqs" linkLabel='Privacy Policy' />
+            <TopLink to="/faqs" linkLabel='FAQs'/>
+            <BrandsFacebook />
+            <BrandsYouTube />
+            <BrandsInstagram />
+            <BrandsBluesky />
+            <BrandsThreads />
+            <BrandsTwitter />
+          </div>
+        </div>
+    );
   }
 }
 
-var currentSequence = 0;
+class DinderFooter extends React.Component {
+  render() {
+    return (
+      <div className={classes.appDownload}>
+        <Link className={classes.topLink} to="/home" >
+        <div className={classes.frame2757}>
+        <div className={classes.group32}>
+            <Group3Icon className={classes.icon} />
+          </div>
+        </div>
+        </Link>
+        <div className={classes.frame2751}>          
+          <Link to="/faqs" className={classes.bottomLink}>Company</Link>
+          <Link to="/faqs" className={classes.bottomLink}>Privacy policy</Link>
+          <Link to="/faqs" className={classes.bottomLink}>FAQs</Link>
+        </div>
+      </div>
+    );
+  }
+}
 
 export const App : FC<Props> = memo(function App() {
-
-    useEffect(() => {
-      function handlePopStateEvent(e: any) {
-        e.preventDefault();      
-
-        console.log("useEffect");
-        console.log(e);
-        console.log("pop state");
-        console.log(e.state);
-        console.log("currentsequence");
-        console.log(currentSequence);
-
-        if(e.state != null) {
-          console.log((e.state as siteStep).page);
-          console.log((e.state as siteStep).sequence);
-          console.log(currentSequence);
-          // back
-          if((e.state as siteStep).sequence == currentSequence) {
-            console.log("back");
-            currentSequence--;
-            console.log("currentSequence now: " + currentSequence);
-            history.back();
-            console.log("after history back");
-            setPage((e.state as siteStep).page);
-            console.log("after set page");
-          } else if ((e.state as siteStep).sequence > currentSequence) {
-            console.log("forward")
-            currentSequence++;
-            setPage((e.state as siteStep).page);
-            history.forward();
-          }
-        } else {
-          setPage("home");
-        }
-        console.log("useEffect end");
-    
-        console.log(e);
-
-        console.log("Check if the function Working")
-
-      }
-
-    console.log("Check if Effect Working")
-
-    window.addEventListener("popstate", handlePopStateEvent);
-
-    return () => window.removeEventListener("popstate", handlePopStateEvent);
-
-  }, []);
-
-  const [page, setPage] = useState("home")
 
   const [dinder, setDinder] = useState(null)
 
   const [dinderinvitecode, setDinderInviteCode] = useState("")
 
+  const page = useLocation().pathname;
   console.log("Page is")
   console.log(page)
-
-  if (page == "home") {
-
+  
+  if (page == "/faqs") {
     return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
-      <Website page={page} setPage={function (d: string): void {
-              setPage(d);
-            } }
-      dinder={null} setDinder={function (d: any): void {
-        setDinder(d)
-      }}
-      dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
-        setDinderInviteCode(d)
-      }}
- />
-    </div>
-  );
-} else if (page == "dinderform") {
+      <div className={`${resets.clapyResets} ${classes.root}`}>
+        <DinderHeader />
+        <FaqsAppComponent  />
+        <DinderFooter />
+      </div>
+    );
+  
+  } else if (page == "/dinderform") {
 
   console.log("page now dinderform")
   console.log(dinder)
   
   return (
   <div className={`${resets.clapyResets} ${classes.root}`}>
-    <DinderForm page={page} setPage={function (d: string): void {
-            history.push(d);
-            setPage(d);
-          } }
+      <DinderHeader />
+      <DinderForm 
     dinder={dinder} setDinder={function (d: any): void {
       setDinder(d)
     }}
@@ -132,14 +112,23 @@ export const App : FC<Props> = memo(function App() {
       setDinderInviteCode(d)
     }}
 />
+<DinderFooter />
   </div>
 );
 } else {
+
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
-      <FaqsAppComponent  page={page} setPage={function (d: string): void {
-        setPage(d);
-      } } />
+      <DinderHeader />
+      <Website 
+      dinder={null} setDinder={function (d: any): void {
+        setDinder(d)
+      }}
+      dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
+        setDinderInviteCode(d)
+      }}
+ />
+ <DinderFooter />
     </div>
   );
 }

@@ -1,10 +1,11 @@
 .root {
-  width: 263px;
+  width: 576px;
   height: 137px;
   flex-direction: column;
   gap: 4px;
   overflow: hidden;
 }
+
 .label {
   color: #171740;
   font-size: 18px;
@@ -15,6 +16,7 @@
   align-self: stretch;
   flex-direction: column;
 }
+
 .input {
   flex: 1;
   align-self: stretch;
@@ -23,6 +25,7 @@
   border-radius: 8px;
   background-color: #fafaff;
 }
+
 .pleaseEnterYourMessage {
   color: #5d5dc5;
   font-size: 18px;

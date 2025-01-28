@@ -18,7 +18,8 @@ interface Props {
 /* @figmaId 3:392 */
 export const BrandsTwitter: FC<Props> = memo(function BrandsTwitter(props = {}) {
   return (
-    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
+    <div className={`${resets.clapyResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}
+    onClick={ () => { console.log("open facebook"); window.open("https://twitter.com/TheDinderApp", "_blank");} }>
       <div className={`${props.classes?.vector || ''} ${classes.vector}`}>
         {props.swap?.vector || <VectorIcon className={classes.icon} />}
       </div>
