@@ -28,6 +28,8 @@ interface Props {
   setDinder(d: any): void;
   dinderinvitecode: string;
   setDinderInviteCode(d: string): void;
+  page: string;
+  setPage(d: string): void;
 }
 
 console.log("in app.tsx")

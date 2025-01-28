@@ -14,6 +14,8 @@ interface Props {
   setDinder(d: any): void;
   dinderinvitecode: string;
   setDinderInviteCode(d: string): void;
+  page: string;
+  setPage(d: string): void;
 }
 
 createRoot(document.getElementById('root')!).render(  
@@ -22,10 +24,12 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
       <Route index element={<App
           dinder={undefined} setDinder={function (d: any): void {
-          throw new Error('Function not implemented.');
-        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
-          throw new Error('Function not implemented.');
-        } } />} />
+            throw new Error('Function not implemented.');
+          } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+            throw new Error('Function not implemented.');
+          } } page={''} setPage={function (d: string): void {
+            throw new Error('Function not implemented.');
+          } } />} />
         <Route path="/" element={<App page={''} setPage={function (d: string): void {
           throw new Error('Function not implemented.');
         } } dinder={undefined} setDinder={function (d: any): void {

@@ -26,9 +26,9 @@ export const MenuMenu_Alt_02: FC<Props> = memo(function MenuMenu_Alt_02(props = 
       <div className={classes.vector}>
         <VectorIconPlumBar className={classes.icon} />
           <nav className={classes.openMenu}>
-            <NavLink to="/faqs" className={classes.topLink}>Company</NavLink>
+            <TopLink to="/faqs" linkLabel='Company' />
             <TopLink to="/faqs" linkLabel='Privacy Policy' />
-            <Link to="/faqs" className={classes.topLink}>FAQs</Link>
+            <TopLink to="/faqs" linkLabel='FAQs'/>
             <BrandsFacebook />
             <BrandsYouTube />
             <BrandsInstagram />
