@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+  width: 34px;
+  height: 40px;
+  align-items: flex-center;
+  justify-items: center;
+  overflow: hidden;
+}
+.vector {
+  position: relative;
+  left: 5.1667%;
+  right: 5.6644%;
+  top: 6.5%;
+  bottom: 6.5%;
+  overflow: visible;
+}
+
+.icon {
+  height: 30px;
+  width: 32px;
+  cursor: pointer;
+}
+
