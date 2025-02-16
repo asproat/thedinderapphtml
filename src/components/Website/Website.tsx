@@ -19,6 +19,8 @@ interface Props {
   setDinder(d: any): void;
   dinderinvitecode: string;
   setDinderInviteCode(d: string): void;
+  page: string;
+  setPage(d: string): void;
 }
 
 export const Website: FC<Props> = memo(function Website({ dinder, setDinder, dinderinvitecode, setDinderInviteCode }) {

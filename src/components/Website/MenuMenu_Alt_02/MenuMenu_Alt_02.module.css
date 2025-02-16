@@ -19,6 +19,12 @@
   width: 50px;
   height: 50px;
 }
+
+.bottomIcon {
+  width: 130px;
+  height: 32px;
+}
+
 .vector2 {
   position: relative;
   left: 20.8333%;

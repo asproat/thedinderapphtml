@@ -65,7 +65,7 @@ class DinderFooter extends React.Component {
         <Link className={classes.topLink} to="/home" >
         <div className={classes.frame2757}>
         <div className={classes.group32}>
-            <Group3Icon className={classes.icon} />
+            <Group3Icon className={classes.bottonIcon} />
           </div>
         </div>
         </Link>
