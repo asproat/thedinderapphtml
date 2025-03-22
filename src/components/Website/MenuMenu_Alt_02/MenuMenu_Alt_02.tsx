@@ -17,16 +17,28 @@ interface Props {
   className?: string;
 }
 
-
-
 /* @figmaId 106:169 */
 export const MenuMenu_Alt_02: FC<Props> = memo(function MenuMenu_Alt_02(props = {}) {
+  const showHideMenu = (event: React.MouseEvent) => {
+    event.stopPropagation(); 
+    const menu = document.querySelectorAll('[class*="openMenu"]')[0];
+    console.log("menu display is visible:" + menu.checkVisibility());
+    //menu?.classList.toggle('showMenu');
+    if (menu.checkVisibility()) {
+      menu.setAttribute("style", "display: none;");
+    } else {
+      menu.setAttribute("style", "display: inline-flex;");
+    }
+  }
+  
   return (
     <div className={`${resets.clapyResets} ${classes.root}`}>
       <div className={classes.vector}>
-        <VectorIconPlumBar className={classes.icon} />
-          <nav className={classes.openMenu}>
-            <TopLink to="/faqs" linkLabel='Company' />
+        <VectorIconPlumBar  className={classes.icon} 
+          onClick={ showHideMenu } 
+        />
+          <nav id="openMenu" className={classes.openMenu}>
+            <TopLink to="/company" linkLabel='Company' />
             <TopLink to="/faqs" linkLabel='Privacy Policy' />
             <TopLink to="/faqs" linkLabel='FAQs'/>
             <BrandsFacebook />

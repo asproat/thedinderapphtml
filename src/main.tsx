@@ -51,6 +51,13 @@ createRoot(document.getElementById('root')!).render(
         } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
           throw new Error('Function not implemented.');
         } } />} />
+        <Route path="/company" element={<App page={''} setPage={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } dinder={undefined} setDinder={function (d: any): void {
+          throw new Error('Function not implemented.');
+        } } dinderinvitecode={''} setDinderInviteCode={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

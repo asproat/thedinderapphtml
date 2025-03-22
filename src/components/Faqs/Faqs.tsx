@@ -1,6 +1,5 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import type { FC } from 'react';
-
 import { useState } from 'react';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { CCollapse } from '@coreui/react';
@@ -68,11 +67,11 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
       <CRow>
         <div
           className={classes.question}
-          onClick={() => toggleIsShown(1)} >Why does the app say “Fetching restaurant details…” every time I pick a Dinder?</div>
+          onClick={() => toggleIsShown(1)} >Why does the app say "Fetching restaurant details..." every time I pick a Dinder?</div>
         <CCollapse visible={question[1]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(1)} >
-            That’s Google’s fault. We use a service provided by Google to find restaurants and get information about them. They only allow us to keep an identifier for the restaurants, no other information. Not the name, address, rating, etc. We wish we could, but we can’t. So, every time you open a Dinder, if we haven’t fetched the other information since the last time you started the app, we have to get them again.
+            That's Google's fault. We use a service provided by Google to find restaurants and get information about them. They only allow us to keep an identifier for the restaurants, no other information. Not the name, address, rating, etc. We wish we could, but we can't. So, every time you open a Dinder, if we haven't fetched the other information since the last time you started the app, we have to get them again.
           </div>
         </CCollapse>
       </CRow>
@@ -101,7 +100,7 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
       <CRow>
         <div
           className={classes.question}
-          onClick={() => toggleIsShown(4)} >Yeah, but you’re going to in the future.</div>
+          onClick={() => toggleIsShown(4)} >Yeah, but you're going to in the future.</div>
         <CCollapse visible={question[4]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(4)} >
@@ -116,7 +115,7 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
         <CCollapse visible={question[5]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(5)} >
-            The only thing we know about anyone using the app is an identifier that lets us show you the Dinders you’re a part of that haven’t expired yet. Yes, the app asks to know where you are when you create a new Dinder because you probably want to pick places near your current location. But you can deny that permission and use the app without any restrictions. And when we create the Dinder based on the location you pick, we throw that location away forever. What’s more, 1 week after the Dinder date, we delete everything about it except for adding a marker for everyone who participated so they know how many they’ve been part of and completely anonymous counts of the stats of the Dinder for the month it occurred. After it’s deleted, we don’t even know who was in which Dinder, just how many they were part of. As for the monthly stats, it’s strictly counts, averages, minimums, and maximums.
+            The only thing we know about anyone using the app is an identifier that lets us show you the Dinders you're a part of that haven't expired yet. Yes, the app asks to know where you are when you create a new Dinder because you probably want to pick places near your current location. But you can deny that permission and use the app without any restrictions. And when we create the Dinder based on the location you pick, we throw that location away forever. What's more, 1 week after the Dinder date, we delete everything about it except for adding a marker for everyone who participated so they know how many they've been part of and completely anonymous counts of the stats of the Dinder for the month it occurred. After it's deleted, we don't even know who was in which Dinder, just how many they were part of. As for the monthly stats, it's strictly counts, averages, minimums, and maximums.
           </div>
         </CCollapse>
       </CRow>
@@ -127,25 +126,25 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
         <CCollapse visible={question[6]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(6)} >
-            Never. Period. End of discussion. If you want to know how serious the creator of the app is about this, look up how the CEO of Costco reacted when they wanted to increase the price of the hot dog there. (Warning, it’s not really safe for work.)
+            Never. Period. End of discussion. If you want to know how serious the creator of the app is about this, look up how the CEO of Costco reacted when they wanted to increase the price of the hot dog there. (Warning, it's not really safe for work.)
           </div>
         </CCollapse>
       </CRow>
       <CRow>
         <div
           className={classes.question}
-          onClick={() => toggleIsShown(7)} >I tried to share my invitation with someone else after I used it, but it didn’t work. Why?</div>
+          onClick={() => toggleIsShown(7)} >I tried to share my invitation with someone else after I used it, but it didn't work. Why?</div>
         <CCollapse visible={question[7]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(7)} >
-            Every invitation code will only work once. After someone has used it to join, it’s no longer valid. We do this so that there’s control over who gets to participate and vote on the choices.
+            Every invitation code will only work once. After someone has used it to join, it's no longer valid. We do this so that there's control over who gets to participate and vote on the choices.
           </div>
         </CCollapse>
       </CRow>
       <CRow>
         <div
           className={classes.question}
-          onClick={() => toggleIsShown(8)} >What’s a Double Plus? What’s a Deal Breaker?</div>
+          onClick={() => toggleIsShown(8)} >What's a Double Plus? What's a Deal Breaker?</div>
         <CCollapse visible={question[8]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(8)} >
@@ -167,11 +166,11 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
       <CRow>
         <div
           className={classes.question}
-          onClick={() => toggleIsShown(10)} >The app is asking for a name to join the Dinder. I thought you didn’t want to know who I am.</div>
+          onClick={() => toggleIsShown(10)} >The app is asking for a name to join the Dinder. I thought you didn't want to know who I am.</div>
         <CCollapse visible={question[10]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(10)} >
-            We don’t. You can put in whatever name you want or choose to stay anonymous (which will make your name “Person 1”, “Person 2”, etc.). And when the Dinder is over, we even throw that name away. Keep in mind, the Dinder host can remove you if they don’t like the name you picked.
+            We don't. You can put in whatever name you want or choose to stay anonymous (which will make your name "Person 1", "Person 2", etc.). And when the Dinder is over, we even throw that name away. Keep in mind, the Dinder host can remove you if they don't like the name you picked.
           </div>
         </CCollapse>
       </CRow>
@@ -182,7 +181,7 @@ export const FaqsAppComponent: FC<Props> = memo(function FaqsAppComponent() {
         <CCollapse visible={question[11]}>
           <div className={classes.answer}
             onClick={() => toggleIsShown(11)} >
-            We don’t restrict anything. If something is offensive to you, contact the person who sent you the invitation. The person who created the Dinder (we call them “the host”) can remove them and their comments.
+            We don't restrict anything. If something is offensive to you, contact the person who sent you the invitation. The person who created the Dinder (we call them "the host") can remove them and their comments.
           </div>
         </CCollapse>
       </CRow>

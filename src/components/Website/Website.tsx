@@ -9,9 +9,6 @@ import { Amplify, API } from 'aws-amplify';
 import { SendEmailCommand, SendEmailResponse, SESClient } from '@aws-sdk/client-ses';
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 import 'react-router-dom';
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
 
 interface Props {
   className?: string;
@@ -237,7 +234,7 @@ export const Website: FC<Props> = memo(function Website({ dinder, setDinder, din
               <div className={classes.textBlock3} id="invitationdetails">
               </div>
               <div className={classes.textBlock4}>Download the app and tap the invitation again to get started.</div>
-              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); }} className={classes.noThanksImNotDownloadingYourApp}>No thanks, I’m not downloading your app</div>
+              <div onClick={() => { console.debug("gotoform"); console.log("click form"); setDinderInviteCode(dinderinvitecode); setDinder(dinder); }} className={classes.noThanksImNotDownloadingYourApp}>No thanks, I'm not downloading your app</div>
             </div>
           </div>
           <div id="invalid" className={classes.intro} style={{ display: "none" }}>
@@ -255,13 +252,13 @@ export const Website: FC<Props> = memo(function Website({ dinder, setDinder, din
           <div id="dinderCopy" className={classes.frame2763} style={{ display: detailshow }}>
             <div className={classes.headline3}>Are you tired of mindlessly scrolling trying to find the perfect place to share a meal?</div>
             <div className={classes.headline3}>Has this conversation ever happened:</div>
-            <div className={classes.headline3}>“What about restaurant A?”</div>
-            <div className={classes.headline3}>“I can’t eat there. Everything is fried. What about restaurant B?”</div>
-            <div className={classes.headline3}>“No, went there last week.”</div>
-            <div className={classes.headline3}>And the “Where do we eat?” carousel continues.</div>
-            <div className={classes.headline3}>Finding the right restaurant that fits everyone’s needs may seem like finding the Holy Grail.</div>
-            <div className={classes.headline3}>At Dinder, we’ve democratized dining out.</div>
-            <div className={classes.headline3}>We know how difficult and exhausting it can be to get everyone to agree on where to eat. Sure, you can roll the dice and pick a random place. But what if no one likes it? What if there are no gluten-free options for Carol? What if Rick lives too far away? Isn’t Daryl allergic to shellfish?</div>
+            <div className={classes.headline3}>"What about restaurant A?"</div>
+            <div className={classes.headline3}>"I can't eat there. Everything is fried. What about restaurant B?"</div>
+            <div className={classes.headline3}>"No, went there last week."</div>
+            <div className={classes.headline3}>And the "Where do we eat?" carousel continues.</div>
+            <div className={classes.headline3}>Finding the right restaurant that fits everyone's needs may seem like finding the Holy Grail.</div>
+            <div className={classes.headline3}>At Dinder, we've democratized dining out.</div>
+            <div className={classes.headline3}>We know how difficult and exhausting it can be to get everyone to agree on where to eat. Sure, you can roll the dice and pick a random place. But what if no one likes it? What if there are no gluten-free options for Carol? What if Rick lives too far away? Isn't Daryl allergic to shellfish?</div>
             <div className={classes.headline3}>If only there was an app that could help you make the best choice on where to eat that makes everyone happy.</div>
             <div className={classes.headline3}>Welcome to The Dinder App.</div>
             <div className={classes.headline3}>Spend less time agonizing and more time socializing.</div>
@@ -302,15 +299,15 @@ export const Website: FC<Props> = memo(function Website({ dinder, setDinder, din
         <div className={classes.feature}>
           <div className={classes.rectangle1}></div>
           <div className={classes.frame2759}>
-            <div className={classes.comprehensiveRestaurantDatabas}>It’s fast. It’s easy. And Dinder takes the guesswork out of where to break bread.</div>
+            <div className={classes.comprehensiveRestaurantDatabas}>It's fast. It's easy. And Dinder takes the guesswork out of where to break bread.</div>
             <div className={classes.loremIpsumDolorSitAmetConsecte2}>
-              Here’s How:
+              Here's How:
               <ol>
                 <li>Pick a Date and Time</li>
                 <li>Pick a Centralized Location Using the Map </li>
                 <li>Push the Button and Create Your Dinder. </li>
               </ol>
-              That’s it. The Dinder App will generate a link for you to share with everyone in your dinner party! Once they get they get the link, they can vote up or down on the choice. Crowdsource with the people you know to find the perfect place to dine.
+              That's it. The Dinder App will generate a link for you to share with everyone in your dinner party! Once they get they get the link, they can vote up or down on the choice. Crowdsource with the people you know to find the perfect place to dine.
 
 
             </div>
@@ -319,7 +316,7 @@ export const Website: FC<Props> = memo(function Website({ dinder, setDinder, din
         <div className={classes.feature}>
           <div className={classes.rectangle14}></div>
           <div className={classes.frame2759}>
-            <div className={classes.socialIntegration}>The Dinder App provides all the information you’ll need to make your dining selections, including listings and locations, restaurant ratings and price rankings. </div>
+            <div className={classes.socialIntegration}>The Dinder App provides all the information you'll need to make your dining selections, including listings and locations, restaurant ratings and price rankings. </div>
             <div className={classes.loremIpsumDolorSitAmetConsecte5}>
 
             </div>

@@ -18,86 +18,6 @@
     'Liberation Sans', sans-serif;
   width: 127px;
   flex-direction: column;
-  width: max-content;
-  background-color: #068d9d;
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.choiceButton2UpSolid,
-.choiceButton2DownSolid,
-.choiceButton1UpSolid,
-.choiceButton1DownSolid,
-.choiceButton2UpOutline,
-.choiceButton2DownOutline,
-.choiceButton1UpOutline,
-.choiceButton1DownOutline,
-.choiceButton2UpOutlineFaded,
-.choiceButton2DownOutlineFaded,
-.choiceButton1UpOutlineFaded,
-.choiceButton1DownOutlineFaded {
-  align-self: stretch;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-
-.choiceButton2UpOutlineFaded,
-.choiceButton2DownOutlineFaded,
-.choiceButton1UpOutlineFaded,
-.choiceButton1DownOutlineFaded {
-  opacity: 0.25;
-}
-
-.choiceCell {
-  vertical-align: top;
-  text-align: center;
-  padding: 10px;
-}
-
-.choiceDetails {
-  padding-top: 10px
-}
-
-.choiceButton2DownSolid {
-  background-image: url('/assets/two_arrows_down_red_filled2.svg');
-}
-
-.choiceButton2DownOutline,
-.choiceButton2DownOutlineFaded {
-  background-image: url('/assets/two_arrows_down_red_outline2.svg');
-}
-
-.choiceButton2UpSolid {
-  background-image: url('/assets/two_arrows_up_green_filled2.svg');
-}
-
-.choiceButton2UpOutline,
-.choiceButton2UpOutlineFaded {
-  background-image: url('/assets/two_arrows_up_green_outline2.svg');
-}
-
-.choiceButton1DownSolid {
-  background-image: url('/assets/one_arrow_down_red_filled2.svg');
-}
-
-.choiceButton1DownOutline,
-.choiceButton1DownOutlineFaded {
-  background-image: url('/assets/one_arrow_down_red_outline2.svg');
-}
-
-.choiceButton1UpSolid {
-  background-image: url('/assets/one_arrow_up_green_filled2.svg');
-}
-
-.choiceButton1UpOutline,
-.choiceButton1UpOutlineFaded {
-  background-image: url('/assets/one_arrow_up_green_outline2.svg');
 }
 
 .v6IconFree.v6IconFree {
@@ -120,39 +40,13 @@
 
 .inputField.inputField {
   width: initial;
-  align-self: center;
-  justify-self: center;
   flex: 1;
-}
-
-.question {
-  width: 80% !important;
-  font-weight: 700;
-  font-size: larger;
-  padding-top: 10px;
-  cursor: pointer;
-}
-
-.answer,
-.copy {
-  width: 80%;
-  font-size: large;
-  background-color: #cccccccc;
-  padding: 15px;
-}
-
-@media (max-width: 430px) {
-  .question,
-  .answer {
-    width: 100%;
-  }  
 }
 
 .label {
   color: #fff;
   font-size: 18px;
   line-height: 24px;
-  padding: 10px;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
   width: min-content;
   height: min-content;
@@ -160,10 +54,57 @@
   flex-direction: column;
 }
 
-.textArea.textArea {
-  width: auto;
-  height: max-content;
+.question {
+  width: 80%;
+  font-weight: 700;
+  font-size: larger;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.answer {
+  width: 80%;
+  font-size: large;
+  background-color: #cccccccc;
+  padding: 15px;
+}
+
+.inputField2.inputField2 {
+  width: initial;
+  flex: 1;
+}
+
+.label2,
+.label3 {
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+.inputField3.inputField3 {
+  width: initial;
   align-self: stretch;
+}
+
+.textArea.textArea {
+  width: initial;
+  height: 190px;
+  align-self: stretch;
+}
+
+.label4 {
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
+  height: min-content;
+  align-self: stretch;
+  flex-direction: column;
 }
 
 .button4.button4 {
@@ -190,14 +131,47 @@
   flex-direction: column;
 }
 
-.brandsFacebook.brandsFacebook,
-.vector,
-.vector2,
-.vector3,
-.vector4,
-.brandsInstagram.brandsInstagram,
-.brandsTwitter.brandsTwitter,
+.brandsFacebook.brandsFacebook {
+  position: initial;
+}
+
+.vector {
+  position: initial;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+}
+
+.brandsInstagram.brandsInstagram {
+  position: initial;
+}
+
+.vector2 {
+  position: initial;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+}
+
+.brandsTwitter.brandsTwitter {
+  position: initial;
+}
+
+.vector3 {
+  position: initial;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+}
+
 .brandsYouTube.brandsYouTube {
+  position: initial;
+}
+
+.vector, .socialIcon {
   position: initial;
   top: initial;
   right: initial;
@@ -215,12 +189,9 @@
 
 .callToAction {
   height: min-content;
-  place-content: end space-between;
+  place-content: space-between;
   background-color: #fff;
   align-items: center;
-  justify-items: end;
-  display: flex;
-  flex-direction: row;
 }
 
 @media (max-width: 430px) {
@@ -233,7 +204,7 @@
 @media (min-width: 431px) {
   .callToAction {
     align-self: stretch;
-    padding: 16px 20px 16px 60px;
+    padding: 16px 120px;
   }
 }
 
@@ -283,9 +254,9 @@
   height: 100px;
 }
 
-.bottomIcon {
-  width: 130px;
-  height: 32px;
+.icon {
+    width: 100%;
+  height: 100%;
 }
 
 .thedinderappCom {
@@ -318,15 +289,11 @@
 }
 
 .links {
-  display: inline-flex;
-  flex-wrap: wrap;
-  height: max-content;
-  align-items: center;
-  justify-items: end;
-  justify-self: end;
-  gap: 15px;
-  align-self: end;
-  justify-self: end;
+  width: min-content;
+  height: 32px;
+  place-content: flex-end;
+  align-items: flex-end;
+  gap: 32px;
 }
 
 @media (max-width: 430px) {
@@ -336,11 +303,10 @@
 }
 
 .burgermenu {
-  width: max-content;
-  height: max-content;
-  place-content: flex-start;
+  width: min-content;
+  height: 25px;
+  place-content: flex-end;
   align-items: flex-end;
-  justify-items: start;
   gap: 32px;
 }
 
@@ -353,7 +319,6 @@
 .topLink {
   color: #5f0f40;
   font-size: 18px;
-  text-decoration: none;
   line-height: 24px;
   font-weight: 500;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
@@ -366,12 +331,7 @@
   cursor: pointer;
 }
 
-.faq,
-.company,
-.split,
-.nosplit {
-  gap: 10px;
-  padding: 32px 60px;
+.faq {
   background-image: url('/assets/splitpart10.png');
   background-position: center;
   background-repeat: repeat;
@@ -379,50 +339,30 @@
   background-blend-mode: multiply;
   height: min-content;
   align-self: stretch;
-  display: grid;
+  display: block;
   align-items: relative;
 }
 
-.nosplit,
-.faq {
-  grid-template-columns: 1fr;
-}
-
 @media (min-width: 431px) {
-  .split {
-    grid-template-columns: 1fr 1fr;
+  .faq {
+    gap: 40px;
+    padding: 32px 60px;
   }
 }
 
 @media (max-width: 430px) {
-  .split {
-    grid-template-columns: 1fr;
-    padding: 10px 10px;
-    ;
-  }
-}
-
-@media (max-width: 430px) {
-  .company,
-  .faq,
-  .nosplit {
+  .faq {
     gap: 20px;
     background-size: contain;
-    padding: 10px 10px;
-    grid-template-columns: 1fr;
+    padding: 40px 40px;
   }
 }
 
-.frame2760,
-.frame2763 {
+.frame2760 {
   height: min-content;
   flex: 1;
   flex-direction: column;
   vertical-align: top;
-}
-
-.frame2763 {
-  gap: 16px;
 }
 
 .intro {
@@ -435,10 +375,7 @@
   gap: 16px;
 }
 
-.welcomeNameOfUser,
-.headline1,
-.headline2,
-.headline3 {
+.welcomeNameOfUser, .headline2 {
   color: #5f0f40;
   font-weight: 900;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -448,29 +385,14 @@
   flex-direction: column;
 }
 
-.headline1 {
-  line-height: 48px;
-  font-size: 48px;
-  margin-bottom: 32px;
-}
-
 .headline2 {
   line-height: 36px;
   font-size: 36px;
-  margin-bottom: 16px;
-}
-
-.headline3 {
-  line-height: 29px;
-  font-size: 26px;
-  padding-top: 12px;
-  margin-bottom: 12px;
 }
 
 .welcomeNameOfUser {
   font-size: 48px;
   line-height: 48px;
-  margin-bottom: 32px;
 }
 
 .youVeBeenInvitedToHelpPickWher {
@@ -492,7 +414,6 @@
   font-size: 24px;
   line-height: 36px;
   font-weight: 500;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
 }
 
 .textBlock2,
@@ -500,21 +421,9 @@
   margin-top: 0;
 }
 
-.choiceRatingDetails {
-  vertical-align: top;
-}
-
-.bigStar {
-  color: gold;
-  font-size: 48px;
-  line-height: 0px;
-  margin-top: 20px;
-}
-
 .textBlock3,
 .textBlock4 {
   line-height: 32px;
-  margin-bottom: 16px;
 }
 
 .frame2758 {
@@ -560,14 +469,14 @@
   align-items: flex-start;
 }
 
-.choiceButton2DownSolid,
-.choiceButton2DownOutline {
+.choiceButton2DownSolid, .choiceButton2DownOutline {
   align-self: stretch;
+  border: 3px solid #FF00FF;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 30px;
-  display: block;
+  display:block;
 }
 
 .choiceButton2DownSolid {
@@ -653,6 +562,15 @@
   flex-direction: column;
 }
 
+@media (max-width: 430px) {
+  .joinTheDinderCommunityToday {
+    width: 100%;
+  }
+}
+
+@media (min-width: 431px) {
+  .joinTheDinderCommunityToday {}
+}
 
 .loremIpsumDolorSitAmetConsecte {
   color: #fff;
@@ -712,7 +630,6 @@
   }
 }
 
-.chickendinder,
 .rectangle1,
 .rectangle12,
 .rectangle13,
@@ -724,30 +641,24 @@
 }
 
 @media (min-width: 431px) {
+
   .rectangle1,
   .rectangle12,
   .rectangle13,
   .rectangle14 {
     height: 280px;
-    width: 420px;
   }
 }
 
 @media (max-width: 430px) {
+
   .rectangle1,
   .rectangle12,
   .rectangle13,
   .rectangle14 {
-    height: 187px;
-    width: 350px;
+    height: 280px;
   }
 }
-
-  .chickendinder {
-    margin-top: 20px;
-    width: 359px;
-    height: 216px;
-  }
 
 .rectangle1 {
   background-image:
@@ -813,12 +724,6 @@
     align-self: stretch;
     align-items: center;
   }
-}
-
-.chickendinder {
-  background-image:
-    /* webpackIgnore: true */
-    url('/assets/chickentindertumblrpost.jpg');
 }
 
 .rectangle13 {
@@ -887,18 +792,15 @@
 
 .contactForm {
   height: min-content;
-  display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
   padding: 48px 0px;
-  align-items: center;
-  justify-self: center;
-  width: 100%;
 }
 
 @media (min-width: 431px) {
   .contactForm {
-    width: 100%;
+    width: min-content;
   }
 }
 
@@ -926,8 +828,6 @@
   place-content: flex-end;
   border-radius: 16px;
   background-color: #5f0f40;
-  align-items: center;
-  width: min-content;
 }
 
 @media (min-width: 431px) {
@@ -937,10 +837,7 @@
     padding: 42px 64px;
   }
 
-  .actualForm {
-    grid-template-columns: 1fr;
-  }
-
+  .actualForm,
   .frame2754 {
     grid-template-columns: 1fr 1fr;
   }
@@ -954,7 +851,6 @@
     gap: 15px;
     width: 90%;
     align-self: center;
-    justify-self: center;
   }
 }
 
@@ -971,11 +867,6 @@
   align-items: flex-start;
   gap: 32px;
   background-color: #5f0f40;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: end;
-  justify-items: space-between;
-  width: 100%;
 }
 
 @media (min-width: 431px) {
@@ -996,7 +887,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  align-self: end;
 }
 
 .group32 {
@@ -1009,28 +899,20 @@
 .frame2751 {
   width: min-content;
   height: min-content;
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-}
-
-@media (max-width: 430px) {
-  .frame2751 {
-    flex-direction: column;
-  }
 }
 
 .bottomLink {
   color: #fff;
   font-size: 18px;
-  text-decoration: none;
   line-height: 24px;
   font-weight: 500;
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', Avenir, system-ui, -apple-system, sans-serif;
   width: min-content;
+  height: min-content;
   white-space: nowrap;
   flex-direction: column;
   cursor: pointer;
-  padding-right: 15px;
 }

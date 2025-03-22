@@ -1,6 +1,5 @@
 import { useState, memo } from 'react';
 import type { FC } from 'react';
-import ReactDomServer from 'react-dom/server';
 import resets from '../_resets.module.css';
 import { BrandsFacebook } from '../Website/BrandsFacebook/BrandsFacebook.js';
 import { BrandsInstagram } from '../Website/BrandsInstagram/BrandsInstagram.js';
@@ -13,11 +12,7 @@ import { GroupIcon2 } from '../Website/GroupIcon2.js';
 import { InputField_labelTrueIconFalse } from '../Website/InputField_labelTrueIconFalse/InputField_labelTrueIconFalse.js';
 import { MenuMenu_Alt_02 } from '../Website/MenuMenu_Alt_02/MenuMenu_Alt_02.js';
 import { TextArea_labelTrue } from '../Website/TextArea_labelTrue/TextArea_labelTrue.js';
-
 import { Amplify, API } from 'aws-amplify';
-import { basename } from 'path';
-import { UUID } from 'crypto';
-import { int } from 'aws-sdk/clients/datapipeline';
 import React from 'react';
 
 interface Props {
@@ -127,7 +122,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { dinde
   };
 
   interface Score {
-    score: int;
+    score: number;
   }
 
   interface Scores {
@@ -151,7 +146,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { dinde
     body: dinderUpdate
   };
 
-  function ratingClick(placeId: string, rating: int) {
+  function ratingClick(placeId: string, rating: number) {
     if (placeValues[placeId] == rating) {
       placeValues[placeId] = 0
       if (dinder.dinderOptions.maxDoublePlus > 0) {
@@ -208,7 +203,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { dinde
     return "https://www.google.com/maps/place/?q=place_id:" + placeId.substring(4)
   }
 
-  function ratingDiv(placeId: string, rating: int) {
+  function ratingDiv(placeId: string, rating: number) {
     return <div id={placeId + Math.abs(rating) + (rating > 0 ? "up" : "down")}
       className={
         (rating == 2 ? classes.choiceButton2UpOutline :
@@ -222,7 +217,7 @@ export const DinderForm: FC<Props> = memo(function DinderForm(this: any, { dinde
     ></div>
   }
 
-  function setRatingClick(placeId: string, rating: int) {
+  function setRatingClick(placeId: string, rating: number) {
     var ratingDiv = document.getElementById(placeId + Math.abs(rating) +
       (rating > 0 ? "up" : "down")
     )

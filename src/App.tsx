@@ -6,9 +6,8 @@ import resets from './components/_resets.module.css';
 import { Website } from './components/Website/Website.js';
 import { FaqsAppComponent } from './components/Faqs/Faqs.js';
 import { DinderForm } from './components/DinderForm/DinderForm.js';
-import { createBrowserHistory } from 'history';
 import { Group3Icon } from './components/Website/Group3IconA';
-import { Link, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
 import { MenuMenu_Alt_02 } from './components/Website/MenuMenu_Alt_02/MenuMenu_Alt_02';
 import { HomeLogo } from './components/Website/HomeLogo/HomeLogo';
@@ -19,8 +18,9 @@ import { BrandsBluesky } from './components/Website/BrandsBluesky/BrandsBluesky'
 import { BrandsThreads } from './components/Website/BrandsThreads/BrandsThreads';
 import { BrandsTwitter } from './components/Website/BrandsTwitter/BrandsTwitter';
 import { TopLink } from './components/Website/TopLink/TopLink';
+import { CompanysAppComponent } from './components/Company/Company';
           
-const history = createBrowserHistory();
+console.log("in app.tsx")
 
 interface Props {
   className?: string;
@@ -32,7 +32,15 @@ interface Props {
   setPage(d: string): void;
 }
 
-console.log("in app.tsx")
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 class DinderHeader extends React.Component {
   render() {
@@ -43,7 +51,7 @@ class DinderHeader extends React.Component {
         </div>
           <HomeLogo/>
           <div className={classes.links}>
-            <TopLink to="/faqs" linkLabel='Company' />
+            <TopLink to="/company" linkLabel='Company' />
             <TopLink to="/faqs" linkLabel='Privacy Policy' />
             <TopLink to="/faqs" linkLabel='FAQs'/>
             <BrandsFacebook />
@@ -70,13 +78,20 @@ class DinderFooter extends React.Component {
         </div>
         </Link>
         <div className={classes.frame2751}>          
-          <Link to="/faqs" className={classes.bottomLink}>Company</Link>
+          <Link to="/company" className={classes.bottomLink}>Company</Link>
           <Link to="/faqs" className={classes.bottomLink}>Privacy policy</Link>
           <Link to="/faqs" className={classes.bottomLink}>FAQs</Link>
         </div>
       </div>
     );
   }
+}
+
+
+function hideMenu() {
+  const menu = document.querySelectorAll('[class*="openMenu"]')[0];
+  //menu?.classList.toggle('showMenu');
+  menu.setAttribute("style", "display: none;");  
 }
 
 export const App : FC<Props> = memo(function App() {
@@ -91,9 +106,20 @@ export const App : FC<Props> = memo(function App() {
   
   if (page == "/faqs") {
     return (
-      <div className={`${resets.clapyResets} ${classes.root}`}>
+      <div className={`${resets.clapyResets} ${classes.root}`} onClick={() => hideMenu()}>
+        <ScrollToTop />
         <DinderHeader />
         <FaqsAppComponent  />
+        <DinderFooter />
+      </div>
+    );
+  
+  } else if (page == "/company") {
+    return (
+      <div className={`${resets.clapyResets} ${classes.root}`} onClick={() => hideMenu()}>
+        <ScrollToTop />
+        <DinderHeader />
+        <CompanysAppComponent  />
         <DinderFooter />
       </div>
     );
@@ -104,8 +130,9 @@ export const App : FC<Props> = memo(function App() {
   console.log(dinder)
   
   return (
-  <div className={`${resets.clapyResets} ${classes.root}`}>
-      <DinderHeader />
+  <div className={`${resets.clapyResets} ${classes.root}`} onClick={() => hideMenu()}>
+        <ScrollToTop />
+        <DinderHeader />
       <DinderForm 
     dinder={dinder} setDinder={function (d: any): void {
       setDinder(d)
@@ -120,16 +147,18 @@ export const App : FC<Props> = memo(function App() {
 } else {
 
   return (
-    <div className={`${resets.clapyResets} ${classes.root}`}>
-      <DinderHeader />
+    <div className={`${resets.clapyResets} ${classes.root}`} onClick={() => hideMenu()}>
+        <ScrollToTop />
+        <DinderHeader />
       <Website 
-      dinder={null} setDinder={function (d: any): void {
-        setDinder(d)
-      }}
-      dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
-        setDinderInviteCode(d)
-      }}
- />
+        dinder={null} setDinder={function (d: any): void {
+          setDinder(d);
+        } }
+        dinderinvitecode={dinderinvitecode} setDinderInviteCode={function (d: string): void {
+          setDinderInviteCode(d);
+        } } page={''} setPage={function (d: string): void {
+          throw new Error('Function not implemented.');
+        } } />
  <DinderFooter />
     </div>
   );
